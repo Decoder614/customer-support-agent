@@ -1,0 +1,47 @@
+# Global Settings
+seed: 42
+brand: Uber_Support
+
+# Data Pipeline Paths & Parameters
+data:
+  raw_path: data/raw/twcs.csv
+  train_path: data/processed/train.csv
+  dev_path: data/processed/dev.csv
+  eval_bootstrap_path: data/processed/eval_bootstrap.csv
+  golden_eval_path: data/golden/golden_eval_verified.csv
+  max_rows: 150000
+  max_pairs: 3000
+  golden_size: 200
+  train_ratio: 0.70
+  dev_ratio: 0.15
+  eval_ratio: 0.15
+
+# Model & Classification Hyperparameters
+classification:
+  model_type: calibrated_logistic_regression
+  c_value: 4.0
+  word_ngram_range: [1, 2]
+  char_ngram_range: [3, 5]
+  min_df: 2
+  class_weight: balanced
+
+# Retrieval Engine Hyperparameters
+retrieval:
+  top_k: 3
+  similarity_threshold: 0.30
+  metric: cosine
+
+# Escalation & Policy Thresholds
+escalation:
+  intent_confidence_threshold: 0.65
+  retrieval_grounding_threshold: 0.30
+  high_risk_intents:
+    - safety_and_driver_conduct
+    - fare_dispute_overcharge
+    - cancellation_fee_issue
+    - driver_partner_inquiry
+
+# Generation Settings
+generation:
+  provider: deterministic
+  max_calls: 60
