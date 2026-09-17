@@ -14,6 +14,7 @@ from src.intents.baseline_classifiers import (
     TrivialMajorityClassifier,
     SimpleTfidfClassifier,
 )
+from src.intents.classifier import IntentClassifier
 
 __all__ = [
     "Intent",
@@ -26,4 +27,5 @@ __all__ = [
     "is_high_risk",
     "TrivialMajorityClassifier",
     "SimpleTfidfClassifier",
+    "IntentClassifier",
 ]

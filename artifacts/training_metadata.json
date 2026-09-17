@@ -1,0 +1,26 @@
+{
+  "training_rows": 2169,
+  "training_sha256": "24a11f52a34b928ec001e2dd7a3fbf10ddd48b0af1e1878daf4b6b8aab9dd811",
+  "seed": 42,
+  "main_features": "word (1, 2) + char_wb (3, 5) TF-IDF; balanced logistic regression C=4.0",
+  "simple_features": "word (1,1) TF-IDF; logistic regression C=1.0",
+  "trivial_features": "majority class frequency",
+  "golden_benchmark_results": {
+    "trivial": {
+      "accuracy": 0.235,
+      "macro_f1": 0.0423,
+      "weighted_f1": 0.0894
+    },
+    "simple": {
+      "accuracy": 0.51,
+      "macro_f1": 0.3667,
+      "weighted_f1": 0.4791
+    },
+    "main": {
+      "accuracy": 0.915,
+      "macro_f1": 0.9167,
+      "weighted_f1": 0.9156
+    }
+  },
+  "runtime_seconds": 6.848
+}
