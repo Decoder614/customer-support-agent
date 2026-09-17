@@ -36,9 +36,9 @@ escalation:
   intent_confidence_threshold: 0.65
   retrieval_grounding_threshold: 0.30
   high_risk_intents:
-    - safety_and_driver_conduct
+    - safety_and_conduct
     - fare_dispute_overcharge
-    - cancellation_fee_issue
+    - cancellation_fee
     - driver_partner_inquiry
 
 # Generation Settings

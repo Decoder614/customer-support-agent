@@ -28,3 +28,6 @@ data/downloads/
 artifacts/*.csv
 artifacts/cache/
 *.log
+
+# Project Notes
+commit-logs.md
