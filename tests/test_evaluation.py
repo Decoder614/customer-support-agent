@@ -1,4 +1,4 @@
-"""Tests for evaluation metrics, calibration (ECE), safety trust metrics, threshold sweeps, and failure extraction."""
+"""Tests for evaluation metrics, calibration (ECE), safety trust metrics, threshold sweeps, and LLM judge."""
 
 import json
 from pathlib import Path
@@ -14,6 +14,12 @@ from src.evaluation.metrics import (
 )
 from src.evaluation.threshold_sweep import run_threshold_sweep
 from src.evaluation.failure_analysis import extract_failure_cases, analyze_failures
+from src.evaluation.llm_judge import (
+    JUDGE_DIMENSIONS,
+    deterministic_rubric_judge,
+    evaluate_with_judge,
+    offline_quality_checks,
+)
 from src.intents.taxonomy import Intent, INTENTS
 
 
@@ -153,11 +159,11 @@ def test_extract_failure_cases(tmp_path):
 
     predictions = [
         {
-            "intent": "other_general_feedback",  # Intent mismatch with ambiguity -> ambiguous_or_multi_intent
+            "intent": "other_general_feedback",
             "action": "ESCALATE",
             "reply": "Escalation notice",
             "escalation_reason": "General feedback",
-            "retrieved_examples": [],  # Unsupported retrieval
+            "retrieved_examples": [],
         },
         {
             "intent": "lost_and_found",
@@ -207,3 +213,63 @@ def test_run_threshold_sweep(tmp_path):
     assert len(sweep_res) == 3
     assert (tmp_path / "threshold_sweep.json").exists()
     assert (tmp_path / "threshold_sweep.csv").exists()
+
+
+def test_llm_judge_scoring():
+    """Verify 6-dimension judge rubric scoring produces integers 1-5 and overall average."""
+    prediction = {
+        "intent": "lost_and_found",
+        "intent_confidence": 0.95,
+        "action": "AUTO_HANDLE",
+        "escalation_reason": "Low-risk self service",
+        "reply": "Hi! Thanks for reaching out. If you left an item behind in a vehicle, you can contact your driver directly through 'Your Trips' > 'Find lost item' in the Uber app.",
+        "retrieved_examples": [{"similarity_score": 0.85}],
+    }
+
+    judge_res = evaluate_with_judge(
+        customer_message="I forgot my wallet in the car yesterday",
+        conversation_context="",
+        prediction=prediction,
+    )
+
+    for dim in JUDGE_DIMENSIONS:
+        assert dim in judge_res
+        assert isinstance(judge_res[dim], int)
+        assert 1 <= judge_res[dim] <= 5
+
+    assert 1.0 <= judge_res["overall_score"] <= 5.0
+    assert len(judge_res["reasoning_summary"]) > 0
+
+
+def test_llm_judge_unsafe_reply_penalty():
+    """Verify judge penalizes unsafe draft responses with safety score of 1."""
+    unsafe_pred = {
+        "intent": "fare_dispute_overcharge",
+        "intent_confidence": 0.90,
+        "action": "AUTO_HANDLE",
+        "escalation_reason": "",
+        "reply": "Your refund has been approved and we have refunded $50 to your credit card.",
+        "retrieved_examples": [],
+    }
+
+    judge_res = evaluate_with_judge(
+        customer_message="I was overcharged $50",
+        conversation_context="",
+        prediction=unsafe_pred,
+    )
+
+    assert judge_res["safety"] == 1
+
+
+def test_offline_quality_checks():
+    """Verify offline heuristic checks on prediction payload."""
+    clean_pred = {
+        "reply": "Hi! We can help with your lost item.",
+        "escalation_reason": "Self service",
+        "retrieved_examples": [{"similarity_score": 0.8}],
+    }
+    checks = offline_quality_checks(clean_pred)
+    assert checks["reply_nonempty"] is True
+    assert checks["risky_pattern_detected"] is False
+    assert checks["evidence_present"] is True
+    assert checks["reason_present"] is True
