@@ -1,0 +1,1213 @@
+{
+  "timestamp": "2026-09-17T10:37:58.464414",
+  "golden_samples_count": 200,
+  "systems_evaluated": [
+    "trivial",
+    "simple",
+    "main"
+  ],
+  "timings_seconds": {
+    "model_training_seconds": 4.768,
+    "golden_evaluation_seconds": 2.224,
+    "threshold_sweep_seconds": 3.235,
+    "failure_analysis_seconds": 0.024,
+    "judge_agreement_seconds": 0.023,
+    "pytest_suite_seconds": 16.515,
+    "total_reproduction_seconds": 26.792
+  },
+  "test_suite_status": "PASSED",
+  "benchmark_results": {
+    "trivial": {
+      "n_samples": 200,
+      "intent_classification": {
+        "accuracy": 0.235,
+        "macro_f1": 0.0423,
+        "weighted_f1": 0.0894,
+        "per_class": {
+          "safety_and_conduct": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 7
+          },
+          "cancellation_fee": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 12
+          },
+          "fare_dispute_overcharge": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "lost_and_found": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "pickup_routing_issue": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 11
+          },
+          "app_and_account_access": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 30
+          },
+          "promotions_and_ubereats": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 28
+          },
+          "driver_partner_inquiry": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5
+          },
+          "other_general_feedback": {
+            "precision": 0.235,
+            "recall": 1.0,
+            "f1": 0.3806,
+            "support": 47
+          }
+        },
+        "labels": [
+          "safety_and_conduct",
+          "cancellation_fee",
+          "fare_dispute_overcharge",
+          "lost_and_found",
+          "pickup_routing_issue",
+          "app_and_account_access",
+          "promotions_and_ubereats",
+          "driver_partner_inquiry",
+          "other_general_feedback"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            12
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            30
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            30
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            30
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            28
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            47
+          ]
+        ]
+      },
+      "escalation_classification": {
+        "accuracy": 0.59,
+        "macro_f1": 0.3711,
+        "weighted_f1": 0.4379,
+        "per_class": {
+          "AUTO_HANDLE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 82
+          },
+          "ESCALATE": {
+            "precision": 0.59,
+            "recall": 1.0,
+            "f1": 0.7421,
+            "support": 118
+          }
+        },
+        "labels": [
+          "AUTO_HANDLE",
+          "ESCALATE"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            82
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      "safety_metrics": {
+        "total_samples": 200,
+        "false_auto_handle_count": 0,
+        "false_auto_handle_rate": 0.0,
+        "unsafe_among_auto": 0.0,
+        "unsafe_rate_among_auto": 0.0,
+        "auto_handle_rate": 0.0,
+        "escalation_rate": 1.0,
+        "intent_accuracy_when_auto": null,
+        "joint_correct_when_auto": null
+      },
+      "calibration": {
+        "ece": 0.3514,
+        "n_bins": 10,
+        "bins": [
+          {
+            "bin_idx": 5,
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 200,
+            "accuracy": 0.235,
+            "mean_confidence": 0.5864,
+            "calibration_gap": 0.3514
+          }
+        ]
+      },
+      "retrieval": {
+        "retrieval_coverage": 0.0,
+        "mean_top_similarity": 0.0
+      }
+    },
+    "simple": {
+      "n_samples": 200,
+      "intent_classification": {
+        "accuracy": 0.51,
+        "macro_f1": 0.3667,
+        "weighted_f1": 0.4791,
+        "per_class": {
+          "safety_and_conduct": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 7
+          },
+          "cancellation_fee": {
+            "precision": 1.0,
+            "recall": 0.4167,
+            "f1": 0.5882,
+            "support": 12
+          },
+          "fare_dispute_overcharge": {
+            "precision": 1.0,
+            "recall": 0.2333,
+            "f1": 0.3784,
+            "support": 30
+          },
+          "lost_and_found": {
+            "precision": 1.0,
+            "recall": 0.3333,
+            "f1": 0.5,
+            "support": 30
+          },
+          "pickup_routing_issue": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 11
+          },
+          "app_and_account_access": {
+            "precision": 0.8333,
+            "recall": 0.5,
+            "f1": 0.625,
+            "support": 30
+          },
+          "promotions_and_ubereats": {
+            "precision": 0.75,
+            "recall": 0.6429,
+            "f1": 0.6923,
+            "support": 28
+          },
+          "driver_partner_inquiry": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5
+          },
+          "other_general_feedback": {
+            "precision": 0.3481,
+            "recall": 1.0,
+            "f1": 0.5165,
+            "support": 47
+          }
+        },
+        "labels": [
+          "safety_and_conduct",
+          "cancellation_fee",
+          "fare_dispute_overcharge",
+          "lost_and_found",
+          "pickup_routing_issue",
+          "app_and_account_access",
+          "promotions_and_ubereats",
+          "driver_partner_inquiry",
+          "other_general_feedback"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            5,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7,
+            0,
+            1,
+            1,
+            1,
+            0,
+            20
+          ],
+          [
+            0,
+            0,
+            0,
+            10,
+            0,
+            2,
+            1,
+            0,
+            17
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            9
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            15,
+            1,
+            0,
+            14
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            18,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            47
+          ]
+        ]
+      },
+      "escalation_classification": {
+        "accuracy": 0.59,
+        "macro_f1": 0.3711,
+        "weighted_f1": 0.4379,
+        "per_class": {
+          "AUTO_HANDLE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 82
+          },
+          "ESCALATE": {
+            "precision": 0.59,
+            "recall": 1.0,
+            "f1": 0.7421,
+            "support": 118
+          }
+        },
+        "labels": [
+          "AUTO_HANDLE",
+          "ESCALATE"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            82
+          ],
+          [
+            0,
+            118
+          ]
+        ]
+      },
+      "safety_metrics": {
+        "total_samples": 200,
+        "false_auto_handle_count": 0,
+        "false_auto_handle_rate": 0.0,
+        "unsafe_among_auto": 0.0,
+        "unsafe_rate_among_auto": 0.0,
+        "auto_handle_rate": 0.0,
+        "escalation_rate": 1.0,
+        "intent_accuracy_when_auto": null,
+        "joint_correct_when_auto": null
+      },
+      "calibration": {
+        "ece": 0.1118,
+        "n_bins": 10,
+        "bins": [
+          {
+            "bin_idx": 2,
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 9,
+            "accuracy": 0.3333,
+            "mean_confidence": 0.2823,
+            "calibration_gap": 0.051
+          },
+          {
+            "bin_idx": 3,
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 22,
+            "accuracy": 0.4545,
+            "mean_confidence": 0.3582,
+            "calibration_gap": 0.0963
+          },
+          {
+            "bin_idx": 4,
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 36,
+            "accuracy": 0.4167,
+            "mean_confidence": 0.4622,
+            "calibration_gap": 0.0455
+          },
+          {
+            "bin_idx": 5,
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 42,
+            "accuracy": 0.3571,
+            "mean_confidence": 0.549,
+            "calibration_gap": 0.1918
+          },
+          {
+            "bin_idx": 6,
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 31,
+            "accuracy": 0.5806,
+            "mean_confidence": 0.6624,
+            "calibration_gap": 0.0818
+          },
+          {
+            "bin_idx": 7,
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 27,
+            "accuracy": 0.5185,
+            "mean_confidence": 0.7429,
+            "calibration_gap": 0.2244
+          },
+          {
+            "bin_idx": 8,
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 29,
+            "accuracy": 0.7931,
+            "mean_confidence": 0.8345,
+            "calibration_gap": 0.0414
+          },
+          {
+            "bin_idx": 9,
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 4,
+            "accuracy": 1.0,
+            "mean_confidence": 0.9271,
+            "calibration_gap": 0.0729
+          }
+        ]
+      },
+      "retrieval": {
+        "retrieval_coverage": 0.335,
+        "mean_top_similarity": 0.4314
+      }
+    },
+    "main": {
+      "n_samples": 200,
+      "intent_classification": {
+        "accuracy": 0.915,
+        "macro_f1": 0.9167,
+        "weighted_f1": 0.9156,
+        "per_class": {
+          "safety_and_conduct": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 7
+          },
+          "cancellation_fee": {
+            "precision": 1.0,
+            "recall": 0.8333,
+            "f1": 0.9091,
+            "support": 12
+          },
+          "fare_dispute_overcharge": {
+            "precision": 0.96,
+            "recall": 0.8,
+            "f1": 0.8727,
+            "support": 30
+          },
+          "lost_and_found": {
+            "precision": 0.963,
+            "recall": 0.8667,
+            "f1": 0.9123,
+            "support": 30
+          },
+          "pickup_routing_issue": {
+            "precision": 0.75,
+            "recall": 0.8182,
+            "f1": 0.7826,
+            "support": 11
+          },
+          "app_and_account_access": {
+            "precision": 0.8529,
+            "recall": 0.9667,
+            "f1": 0.9062,
+            "support": 30
+          },
+          "promotions_and_ubereats": {
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1": 0.8889,
+            "support": 28
+          },
+          "driver_partner_inquiry": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 5
+          },
+          "other_general_feedback": {
+            "precision": 1.0,
+            "recall": 0.9574,
+            "f1": 0.9783,
+            "support": 47
+          }
+        },
+        "labels": [
+          "safety_and_conduct",
+          "cancellation_fee",
+          "fare_dispute_overcharge",
+          "lost_and_found",
+          "pickup_routing_issue",
+          "app_and_account_access",
+          "promotions_and_ubereats",
+          "driver_partner_inquiry",
+          "other_general_feedback"
+        ],
+        "confusion_matrix": [
+          [
+            7,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            10,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            24,
+            0,
+            2,
+            3,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            26,
+            1,
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            9,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            29,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            28,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            45
+          ]
+        ]
+      },
+      "escalation_classification": {
+        "accuracy": 0.65,
+        "macro_f1": 0.5394,
+        "weighted_f1": 0.58,
+        "per_class": {
+          "AUTO_HANDLE": {
+            "precision": 0.8,
+            "recall": 0.1951,
+            "f1": 0.3137,
+            "support": 82
+          },
+          "ESCALATE": {
+            "precision": 0.6333,
+            "recall": 0.9661,
+            "f1": 0.7651,
+            "support": 118
+          }
+        },
+        "labels": [
+          "AUTO_HANDLE",
+          "ESCALATE"
+        ],
+        "confusion_matrix": [
+          [
+            16,
+            66
+          ],
+          [
+            4,
+            114
+          ]
+        ]
+      },
+      "safety_metrics": {
+        "total_samples": 200,
+        "false_auto_handle_count": 4,
+        "false_auto_handle_rate": 0.0339,
+        "unsafe_among_auto": 0.2,
+        "unsafe_rate_among_auto": 0.2,
+        "auto_handle_rate": 0.1,
+        "escalation_rate": 0.9,
+        "intent_accuracy_when_auto": 0.9,
+        "joint_correct_when_auto": 0.8
+      },
+      "calibration": {
+        "ece": 0.1002,
+        "n_bins": 10,
+        "bins": [
+          {
+            "bin_idx": 2,
+            "lower": 0.2,
+            "upper": 0.3,
+            "n": 1,
+            "accuracy": 0.0,
+            "mean_confidence": 0.2876,
+            "calibration_gap": 0.2876
+          },
+          {
+            "bin_idx": 3,
+            "lower": 0.3,
+            "upper": 0.4,
+            "n": 8,
+            "accuracy": 0.625,
+            "mean_confidence": 0.3497,
+            "calibration_gap": 0.2753
+          },
+          {
+            "bin_idx": 4,
+            "lower": 0.4,
+            "upper": 0.5,
+            "n": 14,
+            "accuracy": 0.6429,
+            "mean_confidence": 0.4482,
+            "calibration_gap": 0.1946
+          },
+          {
+            "bin_idx": 5,
+            "lower": 0.5,
+            "upper": 0.6,
+            "n": 16,
+            "accuracy": 0.9375,
+            "mean_confidence": 0.5523,
+            "calibration_gap": 0.3852
+          },
+          {
+            "bin_idx": 6,
+            "lower": 0.6,
+            "upper": 0.7,
+            "n": 11,
+            "accuracy": 0.9091,
+            "mean_confidence": 0.6429,
+            "calibration_gap": 0.2662
+          },
+          {
+            "bin_idx": 7,
+            "lower": 0.7,
+            "upper": 0.8,
+            "n": 16,
+            "accuracy": 0.8125,
+            "mean_confidence": 0.7462,
+            "calibration_gap": 0.0663
+          },
+          {
+            "bin_idx": 8,
+            "lower": 0.8,
+            "upper": 0.9,
+            "n": 9,
+            "accuracy": 1.0,
+            "mean_confidence": 0.8485,
+            "calibration_gap": 0.1515
+          },
+          {
+            "bin_idx": 9,
+            "lower": 0.9,
+            "upper": 1.0,
+            "n": 125,
+            "accuracy": 0.976,
+            "mean_confidence": 0.9495,
+            "calibration_gap": 0.0265
+          }
+        ]
+      },
+      "retrieval": {
+        "retrieval_coverage": 0.22,
+        "mean_top_similarity": 0.4502
+      }
+    }
+  },
+  "top_failure_modes": [
+    {
+      "category": "unsupported_retrieval",
+      "error_count": 156,
+      "hypothesis": "Customer inquiry is legitimate but no matching historical precedent passed the 0.30 cosine similarity threshold.",
+      "recommended_fix": "Expand reviewed historical knowledge base and incorporate dense semantic embeddings.",
+      "representative_examples": [
+        {
+          "example_id": "2429",
+          "customer_message": "[USER] any reason I\u2019m trying to Inform ur support staff that my debit card is being charged fraudulently from another Uber account while I\u2019m at work and no one seems to care?",
+          "conversation_context": "",
+          "gold_intent": "app_and_account_access",
+          "predicted_intent": "app_and_account_access",
+          "gold_action": "AUTO_HANDLE",
+          "predicted_action": "ESCALATE",
+          "agent_reply": "Thanks for reaching out. A specialized customer support agent will review your trip details and account history. Please check the 'Help' section in your Uber app or monitor your registered email for updates.",
+          "escalation_reason": "No sufficiently grounded historical resolution evidence is available.",
+          "hypothesis": "Customer inquiry is legitimate but no matching historical precedent passed the 0.30 cosine similarity threshold.",
+          "possible_fix": "Expand reviewed historical knowledge base and incorporate dense semantic embeddings."
+        },
+        {
+          "example_id": "2446",
+          "customer_message": "[USER] That's a big lie otherwise my account would be up and running, stop lying, I'll make it public all the lies your guys have told me, been told it would only take 48 hours been waiting 5 DAYS",
+          "conversation_context": "customer: [USER] ANSWER ME, WHY IF I REPORT ANOTHER DRIVER WITH A GUN IN HI VEHICLE MY ACCOUNT GETS PUT ON HOLD???????? | support: [USER] Sorry to hear about the trouble, Jasmany. We've escalated your concern - a member of our team will be in touch shortly via in-app. These type of issues are handled off social media. We apologize for any inconvenience this may have caused.",
+          "gold_intent": "app_and_account_access",
+          "predicted_intent": "app_and_account_access",
+          "gold_action": "AUTO_HANDLE",
+          "predicted_action": "ESCALATE",
+          "agent_reply": "Thanks for reaching out. A specialized customer support agent will review your trip details and account history. Please check the 'Help' section in your Uber app or monitor your registered email for updates.",
+          "escalation_reason": "Report of weapons, police intervention, or formal legal emergency requires immediate human escalation.",
+          "hypothesis": "Customer inquiry is legitimate but no matching historical precedent passed the 0.30 cosine similarity threshold.",
+          "possible_fix": "Expand reviewed historical knowledge base and incorporate dense semantic embeddings."
+        },
+        {
+          "example_id": "2447",
+          "customer_message": "[USER] ANSWER ME, WHY IF I REPORT ANOTHER DRIVER WITH A GUN IN HI VEHICLE MY ACCOUNT GETS PUT ON HOLD????????",
+          "conversation_context": "",
+          "gold_intent": "app_and_account_access",
+          "predicted_intent": "app_and_account_access",
+          "gold_action": "AUTO_HANDLE",
+          "predicted_action": "ESCALATE",
+          "agent_reply": "Thanks for reaching out. A specialized customer support agent will review your trip details and account history. Please check the 'Help' section in your Uber app or monitor your registered email for updates.",
+          "escalation_reason": "Report of weapons, police intervention, or formal legal emergency requires immediate human escalation.",
+          "hypothesis": "Customer inquiry is legitimate but no matching historical precedent passed the 0.30 cosine similarity threshold.",
+          "possible_fix": "Expand reviewed historical knowledge base and incorporate dense semantic embeddings."
+        }
+      ]
+    },
+    {
+      "category": "over_escalation",
+      "error_count": 66,
+      "hypothesis": "Conservative policy threshold or missing retrieval step escalated an otherwise safe customer query.",
+      "recommended_fix": "Calibrate confidence thresholds on annotated validation sets without compromising safety.",
+      "representative_examples": [
+        {
+          "example_id": "2429",
+          "customer_message": "[USER] any reason I\u2019m trying to Inform ur support staff that my debit card is being charged fraudulently from another Uber account while I\u2019m at work and no one seems to care?",
+          "conversation_context": "",
+          "gold_intent": "app_and_account_access",
+          "predicted_intent": "app_and_account_access",
+          "gold_action": "AUTO_HANDLE",
+          "predicted_action": "ESCALATE",
+          "agent_reply": "Thanks for reaching out. A specialized customer support agent will review your trip details and account history. Please check the 'Help' section in your Uber app or monitor your registered email for updates.",
+          "escalation_reason": "No sufficiently grounded historical resolution evidence is available.",
+          "hypothesis": "Conservative policy threshold or missing retrieval step escalated an otherwise safe customer query.",
+          "possible_fix": "Calibrate confidence thresholds on annotated validation sets without compromising safety."
+        },
+        {
+          "example_id": "2446",
+          "customer_message": "[USER] That's a big lie otherwise my account would be up and running, stop lying, I'll make it public all the lies your guys have told me, been told it would only take 48 hours been waiting 5 DAYS",
+          "conversation_context": "customer: [USER] ANSWER ME, WHY IF I REPORT ANOTHER DRIVER WITH A GUN IN HI VEHICLE MY ACCOUNT GETS PUT ON HOLD???????? | support: [USER] Sorry to hear about the trouble, Jasmany. We've escalated your concern - a member of our team will be in touch shortly via in-app. These type of issues are handled off social media. We apologize for any inconvenience this may have caused.",
+          "gold_intent": "app_and_account_access",
+          "predicted_intent": "app_and_account_access",
+          "gold_action": "AUTO_HANDLE",
+          "predicted_action": "ESCALATE",
+          "agent_reply": "Thanks for reaching out. A specialized customer support agent will review your trip details and account history. Please check the 'Help' section in your Uber app or monitor your registered email for updates.",
+          "escalation_reason": "Report of weapons, police intervention, or formal legal emergency requires immediate human escalation.",
+          "hypothesis": "Conservative policy threshold or missing retrieval step escalated an otherwise safe customer query.",
+          "possible_fix": "Calibrate confidence thresholds on annotated validation sets without compromising safety."
+        },
+        {
+          "example_id": "2447",
+          "customer_message": "[USER] ANSWER ME, WHY IF I REPORT ANOTHER DRIVER WITH A GUN IN HI VEHICLE MY ACCOUNT GETS PUT ON HOLD????????",
+          "conversation_context": "",
+          "gold_intent": "app_and_account_access",
+          "predicted_intent": "app_and_account_access",
+          "gold_action": "AUTO_HANDLE",
+          "predicted_action": "ESCALATE",
+          "agent_reply": "Thanks for reaching out. A specialized customer support agent will review your trip details and account history. Please check the 'Help' section in your Uber app or monitor your registered email for updates.",
+          "escalation_reason": "Report of weapons, police intervention, or formal legal emergency requires immediate human escalation.",
+          "hypothesis": "Conservative policy threshold or missing retrieval step escalated an otherwise safe customer query.",
+          "possible_fix": "Calibrate confidence thresholds on annotated validation sets without compromising safety."
+        }
+      ]
+    },
+    {
+      "category": "ambiguous_or_multi_intent",
+      "error_count": 17,
+      "hypothesis": "Multiple lexical topics compete in customer query (e.g. overcharge and driver conduct); priority rules disagree with intent classifier.",
+      "recommended_fix": "Refine intent disambiguation hierarchy and have humans label primary requested action.",
+      "representative_examples": [
+        {
+          "example_id": "16153",
+          "customer_message": "[USER] why doesn\u2019t your receipt tell me how I\u2019m paying? I placed an order but wasn\u2019t asked how to pay & your help section isn\u2019t helpful [URL]",
+          "conversation_context": "",
+          "gold_intent": "fare_dispute_overcharge",
+          "predicted_intent": "promotions_and_ubereats",
+          "gold_action": "ESCALATE",
+          "predicted_action": "ESCALATE",
+          "agent_reply": "Thanks for reaching out. A specialized customer support agent will review your trip details and account history. Please check the 'Help' section in your Uber app or monitor your registered email for updates.",
+          "escalation_reason": "Intent classification confidence (0.39) is below safe automation threshold (0.65).",
+          "hypothesis": "Multiple lexical topics compete in customer query (e.g. overcharge and driver conduct); priority rules disagree with intent classifier.",
+          "possible_fix": "Refine intent disambiguation hierarchy and have humans label primary requested action."
+        },
+        {
+          "example_id": "16481",
+          "customer_message": "[USER] need to recover my account whose password I've lost. I've not added any email address.",
+          "conversation_context": "",
+          "gold_intent": "lost_and_found",
+          "predicted_intent": "app_and_account_access",
+          "gold_action": "ESCALATE",
+          "predicted_action": "ESCALATE",
+          "agent_reply": "Thanks for reaching out. A specialized customer support agent will review your trip details and account history. Please check the 'Help' section in your Uber app or monitor your registered email for updates.",
+          "escalation_reason": "No sufficiently grounded historical resolution evidence is available.",
+          "hypothesis": "Multiple lexical topics compete in customer query (e.g. overcharge and driver conduct); priority rules disagree with intent classifier.",
+          "possible_fix": "Refine intent disambiguation hierarchy and have humans label primary requested action."
+        },
+        {
+          "example_id": "59646",
+          "customer_message": "[USER] can someone please explain to me why I have been overcharged my quote,made to walk to diff pick up point & take long way home?",
+          "conversation_context": "",
+          "gold_intent": "fare_dispute_overcharge",
+          "predicted_intent": "pickup_routing_issue",
+          "gold_action": "ESCALATE",
+          "predicted_action": "ESCALATE",
+          "agent_reply": "Thanks for reaching out. A specialized customer support agent will review your trip details and account history. Please check the 'Help' section in your Uber app or monitor your registered email for updates.",
+          "escalation_reason": "Intent classification confidence (0.42) is below safe automation threshold (0.65).",
+          "hypothesis": "Multiple lexical topics compete in customer query (e.g. overcharge and driver conduct); priority rules disagree with intent classifier.",
+          "possible_fix": "Refine intent disambiguation hierarchy and have humans label primary requested action."
+        }
+      ]
+    },
+    {
+      "category": "unsafe_auto_handle",
+      "error_count": 4,
+      "hypothesis": "Agent auto-handled a query that ground truth annotation marked for mandatory human escalation.",
+      "recommended_fix": "Add explicit safety keyword triggers and reduce auto-handling confidence thresholds for sensitive domains.",
+      "representative_examples": [
+        {
+          "example_id": "64325",
+          "customer_message": ".[USER] This driver 1. Asked abt the drop when I called to chk his location and claimed nothing wrong in asking abt drop as per Uber policy 2. Arrived at wrong pick up location and then cancelled when asked to come to the desired point Refund cancellation fees [URL]",
+          "conversation_context": "",
+          "gold_intent": "fare_dispute_overcharge",
+          "predicted_intent": "pickup_routing_issue",
+          "gold_action": "ESCALATE",
+          "predicted_action": "AUTO_HANDLE",
+          "agent_reply": "Hi! Thanks for reaching out. If your driver is having trouble locating your pickup spot, you can use the in-app call or message feature to share your exact terminal, door number, or landmark pin.",
+          "escalation_reason": "A low-risk self-service response is supported by verified historical resolution precedent.",
+          "hypothesis": "Agent auto-handled a query that ground truth annotation marked for mandatory human escalation.",
+          "possible_fix": "Add explicit safety keyword triggers and reduce auto-handling confidence thresholds for sensitive domains."
+        },
+        {
+          "example_id": "124473",
+          "customer_message": "[USER] left phone in car and can not login to contact driver. Please help!",
+          "conversation_context": "",
+          "gold_intent": "lost_and_found",
+          "predicted_intent": "lost_and_found",
+          "gold_action": "ESCALATE",
+          "predicted_action": "AUTO_HANDLE",
+          "agent_reply": "Hi! Thanks for reaching out. If you left an item behind in a vehicle, you can contact your driver directly through 'Your Trips' > select your trip > 'Find lost item' in the Uber app to arrange retrieval.",
+          "escalation_reason": "A low-risk self-service response is supported by verified historical resolution precedent.",
+          "hypothesis": "Agent auto-handled a query that ground truth annotation marked for mandatory human escalation.",
+          "possible_fix": "Add explicit safety keyword triggers and reduce auto-handling confidence thresholds for sensitive domains."
+        },
+        {
+          "example_id": "140475",
+          "customer_message": "[USER] plz help, I had trip Pune Carporation to Ganeshnagar, Vadgaon sheri. I forget my mobile in Cab. I registered cab on mobile. My mobile no is [PHONE]",
+          "conversation_context": "",
+          "gold_intent": "other_general_feedback",
+          "predicted_intent": "lost_and_found",
+          "gold_action": "ESCALATE",
+          "predicted_action": "AUTO_HANDLE",
+          "agent_reply": "Hi! Thanks for reaching out. If you left an item behind in a vehicle, you can contact your driver directly through 'Your Trips' > select your trip > 'Find lost item' in the Uber app to arrange retrieval.",
+          "escalation_reason": "A low-risk self-service response is supported by verified historical resolution precedent.",
+          "hypothesis": "Agent auto-handled a query that ground truth annotation marked for mandatory human escalation.",
+          "possible_fix": "Add explicit safety keyword triggers and reduce auto-handling confidence thresholds for sensitive domains."
+        }
+      ]
+    }
+  ],
+  "judge_agreement": {
+    "n_samples": 40,
+    "dimensions": {
+      "relevance": {
+        "exact_agreement": 0.0,
+        "within_one_agreement": 1.0,
+        "pearson_r": 0.0,
+        "spearman_rho": 0.0,
+        "quadratic_weighted_kappa": 0.0
+      },
+      "groundedness": {
+        "exact_agreement": 0.0,
+        "within_one_agreement": 1.0,
+        "pearson_r": 0.0,
+        "spearman_rho": 0.0,
+        "quadratic_weighted_kappa": 0.0
+      },
+      "helpfulness": {
+        "exact_agreement": 1.0,
+        "within_one_agreement": 1.0,
+        "pearson_r": 1.0,
+        "spearman_rho": 1.0,
+        "quadratic_weighted_kappa": 1.0
+      },
+      "safety": {
+        "exact_agreement": 1.0,
+        "within_one_agreement": 1.0,
+        "pearson_r": 1.0,
+        "spearman_rho": 1.0,
+        "quadratic_weighted_kappa": 1.0
+      },
+      "style": {
+        "exact_agreement": 0.35,
+        "within_one_agreement": 1.0,
+        "pearson_r": 0.0,
+        "spearman_rho": 0.0,
+        "quadratic_weighted_kappa": 0.0
+      },
+      "escalation_appropriateness": {
+        "exact_agreement": 0.95,
+        "within_one_agreement": 1.0,
+        "pearson_r": 0.0,
+        "spearman_rho": 0.0,
+        "quadratic_weighted_kappa": 0.0
+      }
+    },
+    "macro_averages": {
+      "mean_exact_agreement": 0.55,
+      "mean_within_one": 1.0,
+      "mean_quadratic_kappa": 0.3333,
+      "mean_pearson_r": 0.3333
+    }
+  },
+  "threshold_sweep_summary": [
+    {
+      "confidence_threshold": 0.0,
+      "system": "main",
+      "dataset": "dev.csv",
+      "total_samples": 468,
+      "auto_handle_rate": 0.0427,
+      "escalation_rate": 0.9573,
+      "false_auto_handle_count": 2,
+      "false_auto_handle_rate": 0.0056,
+      "unsafe_among_auto": 0.1,
+      "intent_accuracy_when_auto": 0.9,
+      "joint_correct_when_auto": 0.9
+    },
+    {
+      "confidence_threshold": 0.2,
+      "system": "main",
+      "dataset": "dev.csv",
+      "total_samples": 468,
+      "auto_handle_rate": 0.0427,
+      "escalation_rate": 0.9573,
+      "false_auto_handle_count": 2,
+      "false_auto_handle_rate": 0.0056,
+      "unsafe_among_auto": 0.1,
+      "intent_accuracy_when_auto": 0.9,
+      "joint_correct_when_auto": 0.9
+    },
+    {
+      "confidence_threshold": 0.35,
+      "system": "main",
+      "dataset": "dev.csv",
+      "total_samples": 468,
+      "auto_handle_rate": 0.0427,
+      "escalation_rate": 0.9573,
+      "false_auto_handle_count": 2,
+      "false_auto_handle_rate": 0.0056,
+      "unsafe_among_auto": 0.1,
+      "intent_accuracy_when_auto": 0.9,
+      "joint_correct_when_auto": 0.9
+    },
+    {
+      "confidence_threshold": 0.5,
+      "system": "main",
+      "dataset": "dev.csv",
+      "total_samples": 468,
+      "auto_handle_rate": 0.0406,
+      "escalation_rate": 0.9594,
+      "false_auto_handle_count": 1,
+      "false_auto_handle_rate": 0.0028,
+      "unsafe_among_auto": 0.0526,
+      "intent_accuracy_when_auto": 0.9474,
+      "joint_correct_when_auto": 0.9474
+    },
+    {
+      "confidence_threshold": 0.65,
+      "system": "main",
+      "dataset": "dev.csv",
+      "total_samples": 468,
+      "auto_handle_rate": 0.0385,
+      "escalation_rate": 0.9615,
+      "false_auto_handle_count": 0,
+      "false_auto_handle_rate": 0.0,
+      "unsafe_among_auto": 0.0,
+      "intent_accuracy_when_auto": 1.0,
+      "joint_correct_when_auto": 1.0
+    },
+    {
+      "confidence_threshold": 0.8,
+      "system": "main",
+      "dataset": "dev.csv",
+      "total_samples": 468,
+      "auto_handle_rate": 0.0385,
+      "escalation_rate": 0.9615,
+      "false_auto_handle_count": 0,
+      "false_auto_handle_rate": 0.0,
+      "unsafe_among_auto": 0.0,
+      "intent_accuracy_when_auto": 1.0,
+      "joint_correct_when_auto": 1.0
+    },
+    {
+      "confidence_threshold": 0.9,
+      "system": "main",
+      "dataset": "dev.csv",
+      "total_samples": 468,
+      "auto_handle_rate": 0.0385,
+      "escalation_rate": 0.9615,
+      "false_auto_handle_count": 0,
+      "false_auto_handle_rate": 0.0,
+      "unsafe_among_auto": 0.0,
+      "intent_accuracy_when_auto": 1.0,
+      "joint_correct_when_auto": 1.0
+    },
+    {
+      "confidence_threshold": 0.95,
+      "system": "main",
+      "dataset": "dev.csv",
+      "total_samples": 468,
+      "auto_handle_rate": 0.0385,
+      "escalation_rate": 0.9615,
+      "false_auto_handle_count": 0,
+      "false_auto_handle_rate": 0.0,
+      "unsafe_among_auto": 0.0,
+      "intent_accuracy_when_auto": 1.0,
+      "joint_correct_when_auto": 1.0
+    }
+  ]
+}

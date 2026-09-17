@@ -144,7 +144,7 @@ def compute_judge_agreement(
     print(f"\n{'='*85}")
     print(f"  Inter-Annotator Agreement: Human vs. LLM Judge Calibration (N = {len(human_df)})")
     print(f"{'='*85}")
-    print(f"  {'Dimension':<30} | {'Exact (%)':>10} | {'Within ±1':>10} | {'Pearson r':>10} | {'Quad Kappa':>12}")
+    print(f"  {'Dimension':<30} | {'Exact (%)':>10} | {'Within +-1':>10} | {'Pearson r':>10} | {'Quad Kappa':>12}")
     print(f"  {'-'*30}-+-{'-'*10}-+-{'-'*10}-+-{'-'*10}-+-{'-'*12}")
     for dim, stats in results["dimensions"].items():
         ex_str = f"{stats['exact_agreement']*100:.1f}%"

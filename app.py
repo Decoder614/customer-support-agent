@@ -81,7 +81,10 @@ def handle_http_exception(error):
 
 @app.errorhandler(Exception)
 def handle_unexpected_exception(error):
-    app.logger.error(f"Support demo request encountered unexpected error: {type(error).__name__}")
+    if not app.config.get("TESTING"):
+        app.logger.error(f"Support demo request encountered unexpected error: {type(error).__name__}: {error}")
+    else:
+        app.logger.debug(f"Handling expected test exception: {type(error).__name__}: {error}")
     return jsonify({"error": "The support agent service encountered an unexpected error. Please try again."}), 500
 
 

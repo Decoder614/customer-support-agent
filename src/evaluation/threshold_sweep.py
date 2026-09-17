@@ -62,21 +62,61 @@ def run_threshold_sweep(
     agent = load_agent(system_tier=system_tier)
     sweep_results: List[Dict[str, Any]] = []
 
+    logging.info(f"Pre-caching intermediate representations for {len(df)} samples...")
+    top_k = int(agent.settings.get("top_k", 3))
+    min_sim = float(agent.settings.get("retrieval_grounding_threshold", 0.30))
+
+    cached_samples = []
+    for row in df.itertuples():
+        msg = str(row.customer_message)
+        ctx = str(getattr(row, "conversation_context", ""))
+        
+        if hasattr(agent.classifier, "predict_with_confidence"):
+            labels, confs = agent.classifier.predict_with_confidence([msg])
+            pred_intent = labels[0]
+            conf = float(confs[0])
+        elif hasattr(agent.classifier, "predict"):
+            pred_intent = agent.classifier.predict([msg])[0]
+            conf = 1.0
+        else:
+            pred_intent = "other_general_feedback"
+            conf = 0.0
+
+        intent_filter = pred_intent if system_tier == "main" else None
+        evidence = agent.retrieval_index.search(
+            query=msg,
+            top_k=top_k,
+            min_similarity=min_sim,
+            intent=intent_filter,
+        )
+        cached_samples.append((msg, ctx, pred_intent, conf, evidence))
+
     logging.info(f"Sweeping {len(threshold_list)} thresholds over {len(df)} samples...")
 
+    from src.escalation.policy_engine import decide
+
     for thresh in threshold_list:
-        agent.settings["intent_confidence_threshold"] = thresh
+        sweep_settings = dict(agent.settings)
+        sweep_settings["intent_confidence_threshold"] = thresh
 
-        predictions = [
-            agent.process(
-                message=row.customer_message,
-                context=getattr(row, "conversation_context", ""),
-            )
-            for row in df.itertuples()
-        ]
+        pred_intents = []
+        pred_actions = []
 
-        pred_intents = [p["intent"] for p in predictions]
-        pred_actions = [p["action"] for p in predictions]
+        for msg, ctx, pred_intent, conf, evidence in cached_samples:
+            if system_tier == "trivial":
+                action = "ESCALATE"
+            else:
+                pol = decide(
+                    message=msg,
+                    context=ctx,
+                    intent=pred_intent,
+                    confidence=conf,
+                    evidence=evidence,
+                    settings=sweep_settings,
+                )
+                action = pol.action
+            pred_intents.append(pred_intent)
+            pred_actions.append(action)
 
         safety_metrics = calculate_safety_and_policy_metrics(
             gold_actions=gold_actions,

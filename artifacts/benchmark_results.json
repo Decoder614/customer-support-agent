@@ -1,0 +1,845 @@
+{
+  "trivial": {
+    "n_samples": 200,
+    "intent_classification": {
+      "accuracy": 0.235,
+      "macro_f1": 0.0423,
+      "weighted_f1": 0.0894,
+      "per_class": {
+        "safety_and_conduct": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 7
+        },
+        "cancellation_fee": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 12
+        },
+        "fare_dispute_overcharge": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 30
+        },
+        "lost_and_found": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 30
+        },
+        "pickup_routing_issue": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "app_and_account_access": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 30
+        },
+        "promotions_and_ubereats": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 28
+        },
+        "driver_partner_inquiry": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 5
+        },
+        "other_general_feedback": {
+          "precision": 0.235,
+          "recall": 1.0,
+          "f1": 0.3806,
+          "support": 47
+        }
+      },
+      "labels": [
+        "safety_and_conduct",
+        "cancellation_fee",
+        "fare_dispute_overcharge",
+        "lost_and_found",
+        "pickup_routing_issue",
+        "app_and_account_access",
+        "promotions_and_ubereats",
+        "driver_partner_inquiry",
+        "other_general_feedback"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          12
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          11
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          28
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          47
+        ]
+      ]
+    },
+    "escalation_classification": {
+      "accuracy": 0.59,
+      "macro_f1": 0.3711,
+      "weighted_f1": 0.4379,
+      "per_class": {
+        "AUTO_HANDLE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 82
+        },
+        "ESCALATE": {
+          "precision": 0.59,
+          "recall": 1.0,
+          "f1": 0.7421,
+          "support": 118
+        }
+      },
+      "labels": [
+        "AUTO_HANDLE",
+        "ESCALATE"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          82
+        ],
+        [
+          0,
+          118
+        ]
+      ]
+    },
+    "safety_metrics": {
+      "total_samples": 200,
+      "false_auto_handle_count": 0,
+      "false_auto_handle_rate": 0.0,
+      "unsafe_among_auto": 0.0,
+      "unsafe_rate_among_auto": 0.0,
+      "auto_handle_rate": 0.0,
+      "escalation_rate": 1.0,
+      "intent_accuracy_when_auto": null,
+      "joint_correct_when_auto": null
+    },
+    "calibration": {
+      "ece": 0.3514,
+      "n_bins": 10,
+      "bins": [
+        {
+          "bin_idx": 5,
+          "lower": 0.5,
+          "upper": 0.6,
+          "n": 200,
+          "accuracy": 0.235,
+          "mean_confidence": 0.5864,
+          "calibration_gap": 0.3514
+        }
+      ]
+    },
+    "retrieval": {
+      "retrieval_coverage": 0.0,
+      "mean_top_similarity": 0.0
+    }
+  },
+  "simple": {
+    "n_samples": 200,
+    "intent_classification": {
+      "accuracy": 0.51,
+      "macro_f1": 0.3667,
+      "weighted_f1": 0.4791,
+      "per_class": {
+        "safety_and_conduct": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 7
+        },
+        "cancellation_fee": {
+          "precision": 1.0,
+          "recall": 0.4167,
+          "f1": 0.5882,
+          "support": 12
+        },
+        "fare_dispute_overcharge": {
+          "precision": 1.0,
+          "recall": 0.2333,
+          "f1": 0.3784,
+          "support": 30
+        },
+        "lost_and_found": {
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1": 0.5,
+          "support": 30
+        },
+        "pickup_routing_issue": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "app_and_account_access": {
+          "precision": 0.8333,
+          "recall": 0.5,
+          "f1": 0.625,
+          "support": 30
+        },
+        "promotions_and_ubereats": {
+          "precision": 0.75,
+          "recall": 0.6429,
+          "f1": 0.6923,
+          "support": 28
+        },
+        "driver_partner_inquiry": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 5
+        },
+        "other_general_feedback": {
+          "precision": 0.3481,
+          "recall": 1.0,
+          "f1": 0.5165,
+          "support": 47
+        }
+      },
+      "labels": [
+        "safety_and_conduct",
+        "cancellation_fee",
+        "fare_dispute_overcharge",
+        "lost_and_found",
+        "pickup_routing_issue",
+        "app_and_account_access",
+        "promotions_and_ubereats",
+        "driver_partner_inquiry",
+        "other_general_feedback"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          7,
+          0,
+          1,
+          1,
+          1,
+          0,
+          20
+        ],
+        [
+          0,
+          0,
+          0,
+          10,
+          0,
+          2,
+          1,
+          0,
+          17
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          9
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          15,
+          1,
+          0,
+          14
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          18,
+          0,
+          10
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          47
+        ]
+      ]
+    },
+    "escalation_classification": {
+      "accuracy": 0.59,
+      "macro_f1": 0.3711,
+      "weighted_f1": 0.4379,
+      "per_class": {
+        "AUTO_HANDLE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 82
+        },
+        "ESCALATE": {
+          "precision": 0.59,
+          "recall": 1.0,
+          "f1": 0.7421,
+          "support": 118
+        }
+      },
+      "labels": [
+        "AUTO_HANDLE",
+        "ESCALATE"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          82
+        ],
+        [
+          0,
+          118
+        ]
+      ]
+    },
+    "safety_metrics": {
+      "total_samples": 200,
+      "false_auto_handle_count": 0,
+      "false_auto_handle_rate": 0.0,
+      "unsafe_among_auto": 0.0,
+      "unsafe_rate_among_auto": 0.0,
+      "auto_handle_rate": 0.0,
+      "escalation_rate": 1.0,
+      "intent_accuracy_when_auto": null,
+      "joint_correct_when_auto": null
+    },
+    "calibration": {
+      "ece": 0.1118,
+      "n_bins": 10,
+      "bins": [
+        {
+          "bin_idx": 2,
+          "lower": 0.2,
+          "upper": 0.3,
+          "n": 9,
+          "accuracy": 0.3333,
+          "mean_confidence": 0.2823,
+          "calibration_gap": 0.051
+        },
+        {
+          "bin_idx": 3,
+          "lower": 0.3,
+          "upper": 0.4,
+          "n": 22,
+          "accuracy": 0.4545,
+          "mean_confidence": 0.3582,
+          "calibration_gap": 0.0963
+        },
+        {
+          "bin_idx": 4,
+          "lower": 0.4,
+          "upper": 0.5,
+          "n": 36,
+          "accuracy": 0.4167,
+          "mean_confidence": 0.4622,
+          "calibration_gap": 0.0455
+        },
+        {
+          "bin_idx": 5,
+          "lower": 0.5,
+          "upper": 0.6,
+          "n": 42,
+          "accuracy": 0.3571,
+          "mean_confidence": 0.549,
+          "calibration_gap": 0.1918
+        },
+        {
+          "bin_idx": 6,
+          "lower": 0.6,
+          "upper": 0.7,
+          "n": 31,
+          "accuracy": 0.5806,
+          "mean_confidence": 0.6624,
+          "calibration_gap": 0.0818
+        },
+        {
+          "bin_idx": 7,
+          "lower": 0.7,
+          "upper": 0.8,
+          "n": 27,
+          "accuracy": 0.5185,
+          "mean_confidence": 0.7429,
+          "calibration_gap": 0.2244
+        },
+        {
+          "bin_idx": 8,
+          "lower": 0.8,
+          "upper": 0.9,
+          "n": 29,
+          "accuracy": 0.7931,
+          "mean_confidence": 0.8345,
+          "calibration_gap": 0.0414
+        },
+        {
+          "bin_idx": 9,
+          "lower": 0.9,
+          "upper": 1.0,
+          "n": 4,
+          "accuracy": 1.0,
+          "mean_confidence": 0.9271,
+          "calibration_gap": 0.0729
+        }
+      ]
+    },
+    "retrieval": {
+      "retrieval_coverage": 0.335,
+      "mean_top_similarity": 0.4314
+    }
+  },
+  "main": {
+    "n_samples": 200,
+    "intent_classification": {
+      "accuracy": 0.915,
+      "macro_f1": 0.9167,
+      "weighted_f1": 0.9156,
+      "per_class": {
+        "safety_and_conduct": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 7
+        },
+        "cancellation_fee": {
+          "precision": 1.0,
+          "recall": 0.8333,
+          "f1": 0.9091,
+          "support": 12
+        },
+        "fare_dispute_overcharge": {
+          "precision": 0.96,
+          "recall": 0.8,
+          "f1": 0.8727,
+          "support": 30
+        },
+        "lost_and_found": {
+          "precision": 0.963,
+          "recall": 0.8667,
+          "f1": 0.9123,
+          "support": 30
+        },
+        "pickup_routing_issue": {
+          "precision": 0.75,
+          "recall": 0.8182,
+          "f1": 0.7826,
+          "support": 11
+        },
+        "app_and_account_access": {
+          "precision": 0.8529,
+          "recall": 0.9667,
+          "f1": 0.9062,
+          "support": 30
+        },
+        "promotions_and_ubereats": {
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.8889,
+          "support": 28
+        },
+        "driver_partner_inquiry": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "other_general_feedback": {
+          "precision": 1.0,
+          "recall": 0.9574,
+          "f1": 0.9783,
+          "support": 47
+        }
+      },
+      "labels": [
+        "safety_and_conduct",
+        "cancellation_fee",
+        "fare_dispute_overcharge",
+        "lost_and_found",
+        "pickup_routing_issue",
+        "app_and_account_access",
+        "promotions_and_ubereats",
+        "driver_partner_inquiry",
+        "other_general_feedback"
+      ],
+      "confusion_matrix": [
+        [
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          10,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          24,
+          0,
+          2,
+          3,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          26,
+          1,
+          2,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          9,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          29,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          28,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          45
+        ]
+      ]
+    },
+    "escalation_classification": {
+      "accuracy": 0.65,
+      "macro_f1": 0.5394,
+      "weighted_f1": 0.58,
+      "per_class": {
+        "AUTO_HANDLE": {
+          "precision": 0.8,
+          "recall": 0.1951,
+          "f1": 0.3137,
+          "support": 82
+        },
+        "ESCALATE": {
+          "precision": 0.6333,
+          "recall": 0.9661,
+          "f1": 0.7651,
+          "support": 118
+        }
+      },
+      "labels": [
+        "AUTO_HANDLE",
+        "ESCALATE"
+      ],
+      "confusion_matrix": [
+        [
+          16,
+          66
+        ],
+        [
+          4,
+          114
+        ]
+      ]
+    },
+    "safety_metrics": {
+      "total_samples": 200,
+      "false_auto_handle_count": 4,
+      "false_auto_handle_rate": 0.0339,
+      "unsafe_among_auto": 0.2,
+      "unsafe_rate_among_auto": 0.2,
+      "auto_handle_rate": 0.1,
+      "escalation_rate": 0.9,
+      "intent_accuracy_when_auto": 0.9,
+      "joint_correct_when_auto": 0.8
+    },
+    "calibration": {
+      "ece": 0.1002,
+      "n_bins": 10,
+      "bins": [
+        {
+          "bin_idx": 2,
+          "lower": 0.2,
+          "upper": 0.3,
+          "n": 1,
+          "accuracy": 0.0,
+          "mean_confidence": 0.2876,
+          "calibration_gap": 0.2876
+        },
+        {
+          "bin_idx": 3,
+          "lower": 0.3,
+          "upper": 0.4,
+          "n": 8,
+          "accuracy": 0.625,
+          "mean_confidence": 0.3497,
+          "calibration_gap": 0.2753
+        },
+        {
+          "bin_idx": 4,
+          "lower": 0.4,
+          "upper": 0.5,
+          "n": 14,
+          "accuracy": 0.6429,
+          "mean_confidence": 0.4482,
+          "calibration_gap": 0.1946
+        },
+        {
+          "bin_idx": 5,
+          "lower": 0.5,
+          "upper": 0.6,
+          "n": 16,
+          "accuracy": 0.9375,
+          "mean_confidence": 0.5523,
+          "calibration_gap": 0.3852
+        },
+        {
+          "bin_idx": 6,
+          "lower": 0.6,
+          "upper": 0.7,
+          "n": 11,
+          "accuracy": 0.9091,
+          "mean_confidence": 0.6429,
+          "calibration_gap": 0.2662
+        },
+        {
+          "bin_idx": 7,
+          "lower": 0.7,
+          "upper": 0.8,
+          "n": 16,
+          "accuracy": 0.8125,
+          "mean_confidence": 0.7462,
+          "calibration_gap": 0.0663
+        },
+        {
+          "bin_idx": 8,
+          "lower": 0.8,
+          "upper": 0.9,
+          "n": 9,
+          "accuracy": 1.0,
+          "mean_confidence": 0.8485,
+          "calibration_gap": 0.1515
+        },
+        {
+          "bin_idx": 9,
+          "lower": 0.9,
+          "upper": 1.0,
+          "n": 125,
+          "accuracy": 0.976,
+          "mean_confidence": 0.9495,
+          "calibration_gap": 0.0265
+        }
+      ]
+    },
+    "retrieval": {
+      "retrieval_coverage": 0.22,
+      "mean_top_similarity": 0.4502
+    }
+  }
+}

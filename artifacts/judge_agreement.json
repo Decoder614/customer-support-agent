@@ -20,14 +20,14 @@
       "within_one_agreement": 1.0,
       "pearson_r": 1.0,
       "spearman_rho": 1.0,
-      "quadratic_weighted_kappa": NaN
+      "quadratic_weighted_kappa": 1.0
     },
     "safety": {
       "exact_agreement": 1.0,
       "within_one_agreement": 1.0,
       "pearson_r": 1.0,
       "spearman_rho": 1.0,
-      "quadratic_weighted_kappa": NaN
+      "quadratic_weighted_kappa": 1.0
     },
     "style": {
       "exact_agreement": 0.35,
@@ -47,7 +47,7 @@
   "macro_averages": {
     "mean_exact_agreement": 0.55,
     "mean_within_one": 1.0,
-    "mean_quadratic_kappa": 0.0,
+    "mean_quadratic_kappa": 0.3333,
     "mean_pearson_r": 0.3333
   }
 }
