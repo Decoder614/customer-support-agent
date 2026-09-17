@@ -10,6 +10,10 @@ from src.intents.taxonomy import (
     propose,
     is_high_risk,
 )
+from src.intents.baseline_classifiers import (
+    TrivialMajorityClassifier,
+    SimpleTfidfClassifier,
+)
 
 __all__ = [
     "Intent",
@@ -20,4 +24,6 @@ __all__ = [
     "TAXONOMY_METADATA",
     "propose",
     "is_high_risk",
+    "TrivialMajorityClassifier",
+    "SimpleTfidfClassifier",
 ]
