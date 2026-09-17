@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-17T10:37:58.464414",
+  "timestamp": "2026-09-17T11:12:00.013919",
   "golden_samples_count": 200,
   "systems_evaluated": [
     "trivial",
@@ -7,13 +7,13 @@
     "main"
   ],
   "timings_seconds": {
-    "model_training_seconds": 4.768,
-    "golden_evaluation_seconds": 2.224,
-    "threshold_sweep_seconds": 3.235,
-    "failure_analysis_seconds": 0.024,
-    "judge_agreement_seconds": 0.023,
-    "pytest_suite_seconds": 16.515,
-    "total_reproduction_seconds": 26.792
+    "model_training_seconds": 4.867,
+    "golden_evaluation_seconds": 2.17,
+    "threshold_sweep_seconds": 3.714,
+    "failure_analysis_seconds": 0.028,
+    "judge_agreement_seconds": 0.024,
+    "pytest_suite_seconds": 17.313,
+    "total_reproduction_seconds": 28.118
   },
   "test_suite_status": "PASSED",
   "benchmark_results": {
