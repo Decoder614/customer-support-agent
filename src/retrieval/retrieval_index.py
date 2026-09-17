@@ -71,6 +71,7 @@ class RetrievalIndex:
             ngram_range=ngram_range,
             sublinear_tf=True,
             max_features=max_features,
+            stop_words="english",
             lowercase=True,
             strip_accents="unicode",
         )
