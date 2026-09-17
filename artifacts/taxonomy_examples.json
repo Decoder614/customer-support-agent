@@ -1,0 +1,245 @@
+{
+  "app_and_account_access": [
+    {
+      "example_id": 2125,
+      "customer_message": "[USER] After contacting you concerning deactivation of my account, it was reactivated but after 48 hrs, ,it has been been deactivated. Please help",
+      "text": "after contacting you concerning deactivation of my account, it was reactivated but after 48 hrs, ,it has been been deactivated. please help"
+    },
+    {
+      "example_id": 2417,
+      "customer_message": "[USER] I submitted an online request and expect a cancellation credit to my account as I would of had to pay. Thank you!",
+      "text": "i submitted an online request and expect a cancellation credit to my account as i would of had to pay. thank you!"
+    },
+    {
+      "example_id": 2717,
+      "customer_message": "[USER] I need help with my Account, It gets disabled every time I try to login and it's getting really frustrating!\ud83d\ude2c\ud83d\ude20",
+      "text": "i need help with my account, it gets disabled every time i try to login and it's getting really frustrating!\ud83d\ude2c\ud83d\ude20"
+    },
+    {
+      "example_id": 10702,
+      "customer_message": "[USER] I am still waiting for a response in regards to my account being disabled. Is there a number I can call?",
+      "text": "i am still waiting for a response in regards to my account being disabled. is there a number i can call?"
+    },
+    {
+      "example_id": 11681,
+      "customer_message": "[USER] why do i have Uber Navigator Help charges to my account #Canada #unknowncharges #irritated",
+      "text": "why do i have uber navigator help charges to my account #canada #unknowncharges #irritated"
+    }
+  ],
+  "cancellation_fee": [
+    {
+      "example_id": 2436,
+      "customer_message": "Hi [USER] I have a problem with a cancellation fee I was charged but the case fits none of the options. How can I report i this?",
+      "text": "hi i have a problem with a cancellation fee i was charged but the case fits none of the options. how can i report i this?"
+    },
+    {
+      "example_id": 3717,
+      "customer_message": "#uber : how funny when Uber Ask you to add even 10/- incase of low balance, and then deduct 50/- for their driver cancelling the ride.\ud83d\ude21\ud83d\ude21\ud83d\ude21",
+      "text": "#uber : how funny when uber ask you to add even 10/- incase of low balance, and then deduct 50/- for their driver cancelling the ride.\ud83d\ude21\ud83d\ude21\ud83d\ude21"
+    },
+    {
+      "example_id": 3813,
+      "customer_message": "[USER] ordered a car, took longer than the suggested 6 mins, then you wanted to charge me a \u00a35 cancellation fee. You\u2019re having a bubble bath!",
+      "text": "ordered a car, took longer than the suggested 6 mins, then you wanted to charge me a \u00a35 cancellation fee. you\u2019re having a bubble bath!"
+    },
+    {
+      "example_id": 14347,
+      "customer_message": "[USER] Why I am being charged $5? I put the correct address and the driver got mixed up. Now I get the cancellation charge?",
+      "text": "why i am being charged $5? i put the correct address and the driver got mixed up. now i get the cancellation charge?"
+    },
+    {
+      "example_id": 16142,
+      "customer_message": "[USER] why is there no option to explain: \u201cproblem with cancellation fee: MY DRIVER DID NOT SPEAK A WORD OF ENGLISH!\u201d",
+      "text": "why is there no option to explain: \u201cproblem with cancellation fee: my driver did not speak a word of english!\u201d"
+    }
+  ],
+  "driver_partner_inquiry": [
+    {
+      "example_id": 13980,
+      "customer_message": "Q: Is an [USER] car decal needed to start delivering / earning?",
+      "text": "q: is an car decal needed to start delivering / earning?"
+    },
+    {
+      "example_id": 15340,
+      "customer_message": "[USER] It would be awesome of the Driver app didn't allow things like that, maybe prevent multiple deliveries if > 2 miles apart or something.",
+      "text": "it would be awesome of the driver app didn't allow things like that, maybe prevent multiple deliveries if > 2 miles apart or something."
+    },
+    {
+      "example_id": 56030,
+      "customer_message": "[USER] Does the Uber Driver app support Apple Watch? I checked partner help and couldn't find anything.",
+      "text": "does the uber driver app support apple watch? i checked partner help and couldn't find anything."
+    },
+    {
+      "example_id": 65966,
+      "customer_message": "[USER] Day 13 of trying to resolve my issue. Outside of your DM acknowledging my DM, no other response. No explanation. No resolution. This after \"earning VIP\" and spending thousands with [USER] so far this year. Thanks guys!\ud83d\ude00 [USER]",
+      "text": "day 13 of trying to resolve my issue. outside of your dm acknowledging my dm, no other response. no explanation. no resolution. this after \"earning vip\" and spending thousands with so far this year. thanks guys!\ud83d\ude00"
+    },
+    {
+      "example_id": 104045,
+      "customer_message": "[USER] How do I activate my driver account?",
+      "text": "how do i activate my driver account?"
+    }
+  ],
+  "fare_dispute_overcharge": [
+    {
+      "example_id": 2467,
+      "customer_message": "[USER] Minimum fare rides lose money. Fix it.",
+      "text": "minimum fare rides lose money. fix it."
+    },
+    {
+      "example_id": 2478,
+      "customer_message": "When your [USER] driver accuses you of stealing his \u201chustle\u201d money from his cup holder but then finds it under his seat and was rude and disrespectful & denies you a refund...",
+      "text": "when your driver accuses you of stealing his \u201chustle\u201d money from his cup holder but then finds it under his seat and was rude and disrespectful & denies you a refund..."
+    },
+    {
+      "example_id": 2719,
+      "customer_message": "[USER] [USER] you haven\u2019t \u201creached out\u201d. Please refund the cost of the inedible food without delay",
+      "text": "you haven\u2019t \u201creached out\u201d. please refund the cost of the inedible food without delay"
+    },
+    {
+      "example_id": 3163,
+      "customer_message": "Uber driver drove me to wrong location, makes me get out anyway and [USER] won't provide a proper refund \ud83d\ude43\ud83d\ude43\ud83d\ude43 #Delete #Fail Sup [USER] \ud83d\ude18\ud83d\ude18\ud83d\ude18",
+      "text": "uber driver drove me to wrong location, makes me get out anyway and won't provide a proper refund \ud83d\ude43\ud83d\ude43\ud83d\ude43 #delete #fail sup \ud83d\ude18\ud83d\ude18\ud83d\ude18"
+    },
+    {
+      "example_id": 6989,
+      "customer_message": "[USER] I'm ready 2 file a complaint with Better Business Bureau & FTC over misleading info Uber sent 2 me in an email & overcharging",
+      "text": "i'm ready 2 file a complaint with better business bureau & ftc over misleading info uber sent 2 me in an email & overcharging"
+    }
+  ],
+  "lost_and_found": [
+    {
+      "example_id": 780,
+      "customer_message": "[USER] Why is there no phone number ?? I'm literally stranded and now I have to wait for an automated reply this is ridiculous",
+      "text": "why is there no phone number ?? i'm literally stranded and now i have to wait for an automated reply this is ridiculous"
+    },
+    {
+      "example_id": 782,
+      "customer_message": "Literally stranded because of [USER] and because there is no support phone number I have to wait from a message from [USER] Smh \ud83e\udd26\ud83c\udffe\u200d\u2642\ufe0f",
+      "text": "literally stranded because of and because there is no support phone number i have to wait from a message from smh \ud83e\udd26\ud83c\udffe\u200d\u2642\ufe0f"
+    },
+    {
+      "example_id": 2408,
+      "customer_message": "[USER] dealing with a driver who is literally incompetent and just swore down the phone, i hope this isn\u2019t what ubereats stands for?",
+      "text": "dealing with a driver who is literally incompetent and just swore down the phone, i hope this isn\u2019t what ubereats stands for?"
+    },
+    {
+      "example_id": 4585,
+      "customer_message": "[USER] Already responded. No response. New order is 30minutes late. [USER] would do a better job. Using them from now on. Loyal customer just lost.",
+      "text": "already responded. no response. new order is 30minutes late. would do a better job. using them from now on. loyal customer just lost."
+    },
+    {
+      "example_id": 6979,
+      "customer_message": ".[USER] Thanks to your AMAZING customer service, you have just lost 2 customers who have spent nearly $1500 this year. GREAT WORK!",
+      "text": ". thanks to your amazing customer service, you have just lost 2 customers who have spent nearly $1500 this year. great work!"
+    }
+  ],
+  "other_general_feedback": [
+    {
+      "example_id": 771,
+      "customer_message": "[USER] you need to correct false charges from a trip in Lexington KY on Saturday. I want my $13 back #lyingdriver #theft",
+      "text": "you need to correct false charges from a trip in lexington ky on saturday. i want my $13 back #lyingdriver #theft"
+    },
+    {
+      "example_id": 773,
+      "customer_message": "[USER] my driver just drove me to the department of air travel instead of the airport.......... rufkm",
+      "text": "my driver just drove me to the department of air travel instead of the airport.......... rufkm"
+    },
+    {
+      "example_id": 784,
+      "customer_message": "1 hour+ inside an old Altima that smells and has ripped stain seats, with an inexperienced miami driver [USER] standards down now 4 applying!",
+      "text": "1 hour+ inside an old altima that smells and has ripped stain seats, with an inexperienced miami driver standards down now 4 applying!"
+    },
+    {
+      "example_id": 1794,
+      "customer_message": "[USER] wtf is this.. every time I try to use the app it gives me this crap [URL]",
+      "text": "wtf is this.. every time i try to use the app it gives me this crap"
+    },
+    {
+      "example_id": 1793,
+      "customer_message": "[USER] I did. No response.",
+      "text": "i did. no response."
+    }
+  ],
+  "pickup_routing_issue": [
+    {
+      "example_id": 2404,
+      "customer_message": "When I open the GPS map on UberEATS and see that my driver has turned down the wrong street: [URL]",
+      "text": "when i open the gps map on ubereats and see that my driver has turned down the wrong street:"
+    },
+    {
+      "example_id": 2434,
+      "customer_message": "[USER] Is there a way I can address a specific issue? Though i already received compensation for that ride i reported, I'd like to mention it would've been avoided if the route to my location was plotted correctly. The map told him to pass through a route that had a dead end",
+      "text": "is there a way i can address a specific issue? though i already received compensation for that ride i reported, i'd like to mention it would've been avoided if the route to my location was plotted correctly. the map told him to pass through a route that had a dead end"
+    },
+    {
+      "example_id": 17938,
+      "customer_message": "[USER] my driver went 10 minutes out of the way adding more money to my ride than it was originally",
+      "text": "my driver went 10 minutes out of the way adding more money to my ride than it was originally"
+    },
+    {
+      "example_id": 18439,
+      "customer_message": "[USER] why it's not possible to choice pick up location with pin point? Auto location is constantly wrong :(",
+      "text": "why it's not possible to choice pick up location with pin point? auto location is constantly wrong :("
+    },
+    {
+      "example_id": 31991,
+      "customer_message": "Why do [USER] drivers insist on trying to drop you off down the street from your drop off location????? \ud83d\ude44",
+      "text": "why do drivers insist on trying to drop you off down the street from your drop off location????? \ud83d\ude44"
+    }
+  ],
+  "promotions_and_ubereats": [
+    {
+      "example_id": 777,
+      "customer_message": "[USER] got this threw my door today went to order... sorry we don't deliver to your area! What!!! Why did I get this then! [URL]",
+      "text": "got this threw my door today went to order... sorry we don't deliver to your area! what!!! why did i get this then!"
+    },
+    {
+      "example_id": 2156,
+      "customer_message": "[USER] do you also support ubereats singapore? im reaching out here bec the support there is useless. any chance you could help?",
+      "text": "do you also support ubereats singapore? im reaching out here bec the support there is useless. any chance you could help?"
+    },
+    {
+      "example_id": 2418,
+      "customer_message": "Hey [USER] my scheduled ride canceled on me when he was 1 minute away. If I cancel I pay $5. I need a $5 credit.",
+      "text": "hey my scheduled ride canceled on me when he was 1 minute away. if i cancel i pay $5. i need a $5 credit."
+    },
+    {
+      "example_id": 2423,
+      "customer_message": "[USER] just made a $35 ubereats order from [USER] and did not receive my burrito. Who should I contact?",
+      "text": "just made a $35 ubereats order from and did not receive my burrito. who should i contact?"
+    },
+    {
+      "example_id": 2432,
+      "customer_message": ".[USER]\u2019s surge pricing is ridiculous. I literally just ordered the exact same food from [USER] on [USER] for $13 less. \ud83d\ude44",
+      "text": ". \u2019s surge pricing is ridiculous. i literally just ordered the exact same food from on for $13 less. \ud83d\ude44"
+    }
+  ],
+  "safety_and_conduct": [
+    {
+      "example_id": 1812,
+      "customer_message": "[USER] worst most unprofessional driver ever !! asked for extra fee when he showed up ! yelling at me cause uber don't pay for his 30k car??? [URL]",
+      "text": "worst most unprofessional driver ever !! asked for extra fee when he showed up ! yelling at me cause uber don't pay for his 30k car???"
+    },
+    {
+      "example_id": 2463,
+      "customer_message": "For those of you who saw my insta story earlier today, I am safe. I got into a car accident while riding in my [USER] and am currently being checked out in the ER. Moments like this make me realize how quickly things in life can change and how lucky I am to be here. I thank God.",
+      "text": "for those of you who saw my insta story earlier today, i am safe. i got into a car accident while riding in my and am currently being checked out in the er. moments like this make me realize how quickly things in life can change and how lucky i am to be here. i thank god."
+    },
+    {
+      "example_id": 2728,
+      "customer_message": "Hey, all, this guy picked my cousin up in Pittsburgh on Friday for [USER] and tried sexually assaulting her. His name is Feruzbek. [URL]",
+      "text": "hey, all, this guy picked my cousin up in pittsburgh on friday for and tried sexually assaulting her. his name is feruzbek."
+    },
+    {
+      "example_id": 6982,
+      "customer_message": "WTH !! [USER] Totally unprofessional. First,Cancelled the ride without informing me and Second, charging me for that. \ud83d\ude21\ud83d\ude20",
+      "text": "wth !! totally unprofessional. first,cancelled the ride without informing me and second, charging me for that. \ud83d\ude21\ud83d\ude20"
+    },
+    {
+      "example_id": 15334,
+      "customer_message": "[USER] [USER] [USER] [USER] Your driver was thee most unprofessional driver I have ever had. DM me for details. [URL]",
+      "text": "your driver was thee most unprofessional driver i have ever had. dm me for details."
+    }
+  ]
+}
