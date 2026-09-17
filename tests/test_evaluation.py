@@ -1,4 +1,4 @@
-"""Tests for evaluation metrics, calibration (ECE), safety trust metrics, threshold sweeps, and LLM judge."""
+"""Tests for evaluation metrics, calibration (ECE), safety trust metrics, threshold sweeps, LLM judge, and agreement."""
 
 import json
 from pathlib import Path
@@ -20,6 +20,7 @@ from src.evaluation.llm_judge import (
     evaluate_with_judge,
     offline_quality_checks,
 )
+from src.evaluation.judge_agreement import compute_judge_agreement
 from src.intents.taxonomy import Intent, INTENTS
 
 
@@ -273,3 +274,78 @@ def test_offline_quality_checks():
     assert checks["risky_pattern_detected"] is False
     assert checks["evidence_present"] is True
     assert checks["reason_present"] is True
+
+
+def test_compute_judge_agreement(tmp_path):
+    """Verify agreement calculation computes exact agreement, within-one, and quadratic kappa."""
+    human_df = pd.DataFrame([
+        {
+            "example_id": "1",
+            "system": "main",
+            "reply_sha256": "hash1",
+            "customer_message": "I lost my phone",
+            "conversation_context": "",
+            "reply": "Hi! Check Your Trips > Find lost item",
+            "action": "AUTO_HANDLE",
+            "evidence": "[]",
+            "relevance": 5,
+            "groundedness": 5,
+            "helpfulness": 5,
+            "safety": 5,
+            "style": 5,
+            "escalation_appropriateness": 5,
+        },
+        {
+            "example_id": "2",
+            "system": "main",
+            "reply_sha256": "hash2",
+            "customer_message": "Driver crashed",
+            "conversation_context": "",
+            "reply": "Specialist will review",
+            "action": "ESCALATE",
+            "evidence": "[]",
+            "relevance": 4,
+            "groundedness": 4,
+            "helpfulness": 4,
+            "safety": 5,
+            "style": 4,
+            "escalation_appropriateness": 5,
+        },
+    ])
+
+    judge_df = pd.DataFrame([
+        {
+            "example_id": "1",
+            "system": "main",
+            "reply_sha256": "hash1",
+            "relevance": 5,
+            "groundedness": 5,
+            "helpfulness": 5,
+            "safety": 5,
+            "style": 5,
+            "escalation_appropriateness": 5,
+        },
+        {
+            "example_id": "2",
+            "system": "main",
+            "reply_sha256": "hash2",
+            "relevance": 4,
+            "groundedness": 5,
+            "helpfulness": 4,
+            "safety": 5,
+            "style": 4,
+            "escalation_appropriateness": 5,
+        },
+    ])
+
+    res = compute_judge_agreement(
+        human_df=human_df,
+        judge_df=judge_df,
+        dimensions=["relevance", "groundedness", "helpfulness", "safety", "style", "escalation_appropriateness"],
+        artifacts_dir=tmp_path,
+    )
+
+    assert res["n_samples"] == 2
+    assert "dimensions" in res
+    assert "macro_averages" in res
+    assert (tmp_path / "judge_agreement.json").exists()

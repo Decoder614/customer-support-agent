@@ -1,0 +1,53 @@
+{
+  "n_samples": 40,
+  "dimensions": {
+    "relevance": {
+      "exact_agreement": 0.0,
+      "within_one_agreement": 1.0,
+      "pearson_r": 0.0,
+      "spearman_rho": 0.0,
+      "quadratic_weighted_kappa": 0.0
+    },
+    "groundedness": {
+      "exact_agreement": 0.0,
+      "within_one_agreement": 1.0,
+      "pearson_r": 0.0,
+      "spearman_rho": 0.0,
+      "quadratic_weighted_kappa": 0.0
+    },
+    "helpfulness": {
+      "exact_agreement": 1.0,
+      "within_one_agreement": 1.0,
+      "pearson_r": 1.0,
+      "spearman_rho": 1.0,
+      "quadratic_weighted_kappa": NaN
+    },
+    "safety": {
+      "exact_agreement": 1.0,
+      "within_one_agreement": 1.0,
+      "pearson_r": 1.0,
+      "spearman_rho": 1.0,
+      "quadratic_weighted_kappa": NaN
+    },
+    "style": {
+      "exact_agreement": 0.35,
+      "within_one_agreement": 1.0,
+      "pearson_r": 0.0,
+      "spearman_rho": 0.0,
+      "quadratic_weighted_kappa": 0.0
+    },
+    "escalation_appropriateness": {
+      "exact_agreement": 0.95,
+      "within_one_agreement": 1.0,
+      "pearson_r": 0.0,
+      "spearman_rho": 0.0,
+      "quadratic_weighted_kappa": 0.0
+    }
+  },
+  "macro_averages": {
+    "mean_exact_agreement": 0.55,
+    "mean_within_one": 1.0,
+    "mean_quadratic_kappa": 0.0,
+    "mean_pearson_r": 0.3333
+  }
+}
