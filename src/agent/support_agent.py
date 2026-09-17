@@ -154,12 +154,25 @@ def load_agent(
     config_path: Union[str, Path] = "config/default.yaml",
 ) -> SupportAgent:
     """Factory loader that restores or initializes classifier models and the retrieval index."""
+    repo_root = Path(__file__).resolve().parent.parent.parent
+    
     models_dir = Path(models_dir)
+    if not models_dir.is_absolute() and not models_dir.exists():
+        if (repo_root / models_dir).exists():
+            models_dir = repo_root / models_dir
     model_file = models_dir / f"{system_tier}.joblib"
 
     train_path = Path(train_path)
+    if not train_path.is_absolute() and not train_path.exists():
+        if (repo_root / train_path).exists():
+            train_path = repo_root / train_path
     if not train_path.exists():
         raise FileNotFoundError(f"Training dataset not found at {train_path}. Run data preparation first.")
+
+    config_path = Path(config_path)
+    if not config_path.is_absolute() and not config_path.exists():
+        if (repo_root / config_path).exists():
+            config_path = repo_root / config_path
 
     train_df = pd.read_csv(train_path, dtype=str, keep_default_na=False)
 

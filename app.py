@@ -4,6 +4,7 @@ Provides an interactive user interface and REST API endpoints for real-time
 intent classification, precedent retrieval, escalation decisioning, and response drafting.
 """
 
+from pathlib import Path
 from threading import Lock
 from typing import Optional
 from flask import Flask, jsonify, render_template, request
@@ -11,7 +12,12 @@ from werkzeug.exceptions import HTTPException
 
 from src.agent.support_agent import SupportAgent, load_agent
 
-app = Flask(__name__)
+BASE_DIR = Path(__file__).resolve().parent
+app = Flask(
+    __name__,
+    template_folder=str(BASE_DIR / "templates"),
+    static_folder=str(BASE_DIR / "static"),
+)
 app.config["MAX_CONTENT_LENGTH"] = 128 * 1024  # 128 KB max request body
 
 _agent: Optional[SupportAgent] = None
