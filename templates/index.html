@@ -3,332 +3,791 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Uber AI Support Agent · Live Evaluation Dashboard</title>
+  <title>Uber AI Customer Support Agent · Live Evaluation Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090c10;
-      --card-bg: #161b22;
-      --card-alt: #0d1117;
-      --border: #30363d;
-      --border-accent: #388bfd;
-      --text: #f0f6fc;
-      --text-muted: #8b949e;
-      --accent: #238636;
-      --accent-hover: #2ea043;
-      --primary: #1f6feb;
-      --primary-hover: #388bfd;
-      --warning-bg: rgba(210, 153, 34, 0.15);
-      --warning-border: #d29922;
-      --warning-text: #e3b341;
-      --danger-bg: rgba(248, 81, 73, 0.15);
-      --danger-border: #f85149;
-      --danger-text: #ff7b72;
-      --success-bg: rgba(46, 160, 67, 0.15);
-      --success-border: #2ea043;
-      --success-text: #3fb950;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-muted: #f1f5f9;
+      --surface-hover: #f8fafc;
+      
+      --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --border-focus: #09090b;
+
+      --text-main: #09090b;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+
+      /* Signature Yellow & Black Brand Colors */
+      --brand-yellow: #facc15;
+      --brand-yellow-hover: #eab308;
+      --brand-yellow-subtle: #fef9c3;
+      --brand-yellow-border: #fde047;
+      --brand-yellow-text: #854d0e;
+
+      --brand-black: #09090b;
+      --brand-black-hover: #18181b;
+
+      /* Status Colors */
+      --success-bg: #f0fdf4;
+      --success-border: #bbf7d0;
+      --success-text: #166534;
+
+      --escalate-bg: #fffbeb;
+      --escalate-border: #fde68a;
+      --escalate-text: #92400e;
+
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+      --danger-text: #991b1b;
+
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+      --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
-    * { box-sizing: border-box; }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 32px 16px;
-      line-height: 1.6;
+      padding: 0;
     }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding-bottom: 60px;
+    }
+
+    /* Top Accent Line */
+    .top-brand-stripe {
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand-black) 0%, var(--brand-yellow) 50%, var(--brand-black) 100%);
+    }
+
     .container {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
+      padding: 36px 20px 20px;
     }
+
+    /* Header styling */
     header {
-      margin-bottom: 24px;
+      margin-bottom: 32px;
       text-align: center;
     }
-    .badge-bar {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-    .badge {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+
+    .header-badges {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      background: #ffffff;
       padding: 4px 12px;
-      border-radius: 20px;
-      background: rgba(56, 139, 253, 0.15);
-      color: #58a6ff;
-      border: 1px solid rgba(56, 139, 253, 0.4);
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
     }
-    .badge-secondary {
-      background: rgba(139, 148, 158, 0.15);
-      color: #c9d1d9;
-      border-color: var(--border);
+
+    .header-badge-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-main);
     }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--brand-yellow);
+      box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.4);
+    }
+
+    .header-badge-divider {
+      color: var(--border);
+      font-size: 12px;
+    }
+
+    .header-badge-sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
     h1 {
-      margin: 0 0 8px 0;
       font-size: 30px;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 6px;
     }
+
+    .brand-mark {
+      background: var(--brand-black);
+      color: var(--brand-yellow);
+      padding: 2px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
     .subtitle {
+      font-size: 14px;
       color: var(--text-muted);
-      margin: 0;
-      font-size: 15px;
+      max-width: 650px;
+      margin: 0 auto;
     }
+
+    /* Cards (shadcn/ui inspired) */
     .card {
-      background: var(--card-bg);
+      background: var(--surface);
       border: 1px solid var(--border);
-      padding: 28px;
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      padding: 24px;
       margin-bottom: 24px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .section-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .card-title svg {
+      width: 16px;
+      height: 16px;
       color: var(--text-muted);
-      font-weight: 700;
-      margin-bottom: 12px;
     }
-    .examples-bar {
+
+    /* Presets Toolbar */
+    .preset-section {
+      margin-bottom: 20px;
+    }
+
+    .preset-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preset-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 20px;
     }
-    .sample-btn {
-      background: #21262d;
+
+    .preset-btn {
+      appearance: none;
+      background: #ffffff;
       border: 1px solid var(--border);
-      color: #c9d1d9;
-      padding: 7px 14px;
-      border-radius: 8px;
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
       font-size: 12px;
       font-weight: 500;
+      font-family: inherit;
       cursor: pointer;
-      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
     }
-    .sample-btn:hover {
-      background: #30363d;
-      color: #fff;
-      border-color: var(--border-accent);
+
+    .preset-btn:hover {
+      background: var(--surface-muted);
+      border-color: var(--brand-yellow);
+      color: var(--brand-black);
+      transform: translateY(-1px);
     }
-    label {
-      display: block;
-      margin-top: 14px;
-      margin-bottom: 6px;
-      font-size: 14px;
+
+    .preset-btn:active {
+      transform: translateY(0);
+    }
+
+    .preset-btn .preset-tag {
+      font-size: 10px;
       font-weight: 600;
-      color: #c9d1d9;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: var(--surface-muted);
+      color: var(--text-muted);
     }
+
+    /* Form inputs */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .label-hint {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
     textarea, select {
       width: 100%;
-      padding: 12px 14px;
+      padding: 10px 12px;
       font-family: inherit;
-      font-size: 14px;
-      color: var(--text);
-      background: var(--card-alt);
+      font-size: 13.5px;
+      color: var(--text-main);
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      resize: vertical;
-      transition: border-color 0.2s ease;
+      border-radius: var(--radius-md);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      line-height: 1.5;
     }
+
+    textarea::placeholder {
+      color: var(--text-subtle);
+    }
+
     textarea:focus, select:focus {
       outline: none;
-      border-color: var(--border-accent);
+      border-color: var(--brand-black);
+      box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.08), 0 0 0 4px rgba(250, 204, 21, 0.25);
     }
+
+    /* Grid for context & system tier */
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
+      margin-top: 14px;
     }
-    @media (max-width: 768px) {
-      .grid-2 { grid-template-columns: 1fr; }
+
+    @media (max-width: 680px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
     }
-    .btn-row {
+
+    /* Action bar */
+    .action-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-top: 18px;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
     }
-    button[type="submit"] {
-      padding: 11px 26px;
-      border: 0;
-      border-radius: 8px;
-      background: var(--primary);
-      color: white;
-      font-size: 14px;
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      appearance: none;
+      background: var(--brand-black);
+      color: #ffffff;
+      border: 1px solid var(--brand-black);
+      padding: 9px 20px;
+      border-radius: var(--radius-md);
+      font-size: 13.5px;
       font-weight: 600;
+      font-family: inherit;
       cursor: pointer;
-      transition: background 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+      box-shadow: var(--shadow-sm);
     }
-    button[type="submit"]:hover { background: var(--primary-hover); }
-    button:disabled { opacity: 0.6; cursor: not-allowed; }
-    .status-msg {
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--brand-black-hover);
+      border-color: var(--brand-black-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-primary .yellow-accent-icon {
+      color: var(--brand-yellow);
+    }
+
+    .btn-secondary {
+      appearance: none;
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 9px 16px;
+      border-radius: var(--radius-md);
       font-size: 13px;
-      color: var(--text-muted);
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
     }
-    /* Results View */
-    .result-section {
+
+    .btn-secondary:hover {
+      background: var(--surface-muted);
+      border-color: var(--text-muted);
+    }
+
+    .status-msg {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Results section styling */
+    .results-wrapper {
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .action-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 9999px;
+    }
+
+    .pill-auto {
+      background: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid var(--success-border);
+    }
+
+    .pill-escalate {
+      background: var(--escalate-bg);
+      color: var(--escalate-text);
+      border: 1px solid var(--escalate-border);
+    }
+
+    /* Metrics 3-Column Grid */
+    .metric-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
-    }
-    .result-header {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
     }
-    .action-tag {
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.04em;
-    }
-    .tag-escalate { background: var(--danger-bg); color: var(--danger-text); border: 1px solid var(--danger-border); }
-    .tag-auto { background: var(--success-bg); color: var(--success-text); border: 1px solid var(--success-border); }
-    
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
-    }
-    .metric-box {
-      background: var(--card-alt);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px;
-    }
-    .metric-label {
+
+    .stat-label {
       font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
       font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .metric-value {
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
-    }
-    .metric-sub {
-      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .reply-box {
-      background: var(--card-alt);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
+    .stat-value {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
     }
-    .reply-header {
+
+    .stat-footer {
+      margin-top: 8px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .confidence-meter {
+      height: 4px;
+      width: 100%;
+      background: var(--surface-muted);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .confidence-fill {
+      height: 100%;
+      background: var(--brand-black);
+      border-radius: 9999px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Response Draft Container */
+    .draft-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .draft-header {
+      background: var(--surface-muted);
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
-    }
-    .reply-text {
-      font-size: 14px;
-      color: #e6edf3;
-      white-space: pre-wrap;
-      line-height: 1.5;
     }
 
-    .evidence-item {
-      background: var(--card-alt);
+    .draft-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .copy-btn {
+      appearance: none;
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .copy-btn:hover {
+      background: var(--brand-yellow-subtle);
+      border-color: var(--brand-yellow-border);
+      color: var(--brand-yellow-text);
+    }
+
+    .draft-body {
+      padding: 16px 18px;
+      font-size: 14px;
+      color: var(--text-main);
+      line-height: 1.6;
+      white-space: pre-wrap;
+      font-family: var(--font-sans);
+    }
+
+    /* Evidence List */
+    .evidence-section {
+      margin-bottom: 20px;
+    }
+
+    .evidence-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .evidence-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
       padding: 12px 14px;
       margin-bottom: 10px;
-      font-size: 13px;
-    }
-    .evidence-header {
-      display: flex;
-      justify-content: space-between;
-      color: var(--text-muted);
-      font-size: 12px;
-      margin-bottom: 6px;
+      transition: border-color 0.15s ease;
     }
 
-    details {
-      background: var(--card-alt);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 14px;
+    .evidence-card:hover {
+      border-color: var(--brand-yellow-hover);
     }
+
+    .evidence-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    .evidence-badge {
+      font-weight: 600;
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .evidence-sim {
+      font-weight: 600;
+      color: var(--brand-yellow-text);
+      background: var(--brand-yellow-subtle);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .evidence-query {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .evidence-query strong {
+      color: var(--text-main);
+    }
+
+    .evidence-reply {
+      font-size: 12.5px;
+      color: var(--text-main);
+      background: var(--surface-muted);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--brand-yellow);
+    }
+
+    /* Accordion details for Raw JSON */
+    details {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 12px 16px;
+      margin-top: 14px;
+    }
+
     summary {
       cursor: pointer;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
     }
-    summary:hover { color: #fff; }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary:hover {
+      color: var(--brand-yellow-text);
+    }
+
     pre {
-      margin-top: 10px;
+      margin-top: 12px;
       white-space: pre-wrap;
       font-family: var(--font-mono);
       font-size: 12px;
-      color: #c9d1d9;
-      background: #05070a;
-      padding: 12px;
-      border-radius: 6px;
+      color: #1e293b;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 14px;
+      border-radius: var(--radius-md);
       overflow-x: auto;
     }
 
+    /* Footer */
     footer {
-      margin-top: 32px;
+      margin-top: 40px;
       text-align: center;
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--text-muted);
     }
-    footer a { color: #58a6ff; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+
+    footer a {
+      color: var(--text-main);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    footer a:hover {
+      color: var(--brand-yellow-text);
+    }
+
+    /* Spinner */
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #ffffff;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
+
+<div class="top-brand-stripe"></div>
+
 <div class="container">
   <header>
-    <div class="badge-bar">
-      <span class="badge">Hiver SDE Intern Project</span>
-      <span class="badge badge-secondary">Production Demo</span>
+    <div class="header-badges">
+      <div class="header-badge-chip">
+        <span class="chip-dot"></span>
+        <span>Hiver SDE Intern</span>
+      </div>
+      <span class="header-badge-divider">/</span>
+      <span class="header-badge-sub">Production Demo</span>
     </div>
     <h1>Uber AI Customer Support Agent</h1>
     <p class="subtitle">Real-time Intent Classification · Multi-Factor Safety Escalation · Historically Grounded Drafting</p>
   </header>
 
   <div class="card">
-    <div class="section-title">Quick Test Presets</div>
-    <div class="examples-bar">
-      <button class="sample-btn" onclick="setPreset('lost_item')">🎒 Lost Item (Auto-handle)</button>
-      <button class="sample-btn" onclick="setPreset('fare_dispute')">💳 Fare Dispute (Escalate)</button>
-      <button class="sample-btn" onclick="setPreset('safety_accident')">🚨 Safety Emergency (Escalate)</button>
-      <button class="sample-btn" onclick="setPreset('driver_partner')">🚗 Driver Inquiry (Escalate)</button>
-      <button class="sample-btn" onclick="setPreset('app_troubleshoot')">📱 App Crash (Troubleshoot)</button>
+    <div class="card-header">
+      <div class="card-title">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        Inbound Customer Inquiry
+      </div>
+      <span class="label-hint">Live Pipeline Demo</span>
+    </div>
+
+    <!-- Quick Presets -->
+    <div class="preset-section">
+      <div class="preset-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        Quick Evaluation Presets
+      </div>
+      <div class="preset-chips">
+        <button type="button" class="preset-btn" onclick="setPreset('lost_item')">
+          <span>🎒 Lost Item</span>
+          <span class="preset-tag">Auto-Handle</span>
+        </button>
+        <button type="button" class="preset-btn" onclick="setPreset('fare_dispute')">
+          <span>💳 Fare Dispute</span>
+          <span class="preset-tag">Escalate</span>
+        </button>
+        <button type="button" class="preset-btn" onclick="setPreset('safety_accident')">
+          <span>🚨 Safety Emergency</span>
+          <span class="preset-tag">Critical</span>
+        </button>
+        <button type="button" class="preset-btn" onclick="setPreset('driver_partner')">
+          <span>🚗 Driver Inquiry</span>
+          <span class="preset-tag">Partner</span>
+        </button>
+        <button type="button" class="preset-btn" onclick="setPreset('app_troubleshoot')">
+          <span>📱 App Crash</span>
+          <span class="preset-tag">Technical</span>
+        </button>
+      </div>
     </div>
 
     <form id="agentForm">
-      <label for="messageInput">Customer Inbound Message</label>
-      <textarea id="messageInput" rows="3" maxlength="10000" required placeholder="Enter customer inquiry message...">I forgot my backpack and laptop in the back seat of my Uber ride this morning.</textarea>
+      <div class="form-group">
+        <label for="messageInput">
+          <span>Customer Inbound Message</span>
+          <span id="charCount" class="label-hint">0 / 10,000</span>
+        </label>
+        <textarea id="messageInput" rows="3" maxlength="10000" required placeholder="Enter customer inquiry message...">The driver was drinking alcohol from an open can and swerving</textarea>
+      </div>
 
       <div class="grid-2">
-        <div>
-          <label for="contextInput">Thread Context (Optional)</label>
+        <div class="form-group">
+          <label for="contextInput">
+            <span>Thread Context (Optional)</span>
+          </label>
           <textarea id="contextInput" rows="2" maxlength="20000" placeholder="Prior conversation turns if any..."></textarea>
         </div>
-        <div>
-          <label for="systemTier">Model Tier</label>
+        <div class="form-group">
+          <label for="systemTier">
+            <span>Evaluation Model Tier</span>
+          </label>
           <select id="systemTier">
             <option value="main" selected>Main Candidate (Word + Subword TF-IDF + Heuristics)</option>
             <option value="simple">Simple Baseline (Word TF-IDF + Logistic Regression)</option>
@@ -337,64 +796,108 @@
         </div>
       </div>
 
-      <div class="btn-row">
-        <button id="submitBtn" type="submit">Process Customer Message</button>
+      <div class="action-row">
+        <div class="btn-group">
+          <button id="submitBtn" type="submit" class="btn-primary">
+            <svg class="yellow-accent-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            <span id="btnText">Process Customer Message</span>
+          </button>
+          <button type="button" class="btn-secondary" onclick="clearForm()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+            Reset
+          </button>
+        </div>
         <div id="statusIndicator" class="status-msg" role="status"></div>
       </div>
     </form>
   </div>
 
-  <div id="resultsCard" class="card" hidden>
-    <div class="result-section">
-      <div class="result-header">
-        <div>
-          <strong style="font-size: 16px; color: #fff;">Pipeline Output</strong>
-          <div id="resultTimestamp" style="font-size: 12px; color: var(--text-muted); margin-top: 2px;"></div>
-        </div>
-        <div id="actionBadge" class="action-tag"></div>
+  <div id="resultsCard" class="card results-wrapper" hidden>
+    <div class="card-header">
+      <div class="card-title">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        Pipeline Execution Output
       </div>
-
-      <div class="metric-grid">
-        <div class="metric-box">
-          <div class="metric-label">Predicted Intent</div>
-          <div id="intentDisplay" class="metric-value">--</div>
-          <div id="confidenceDisplay" class="metric-sub">Confidence: --</div>
-        </div>
-
-        <div class="metric-box">
-          <div class="metric-label">Escalation Policy</div>
-          <div id="escalationTierDisplay" class="metric-value">--</div>
-          <div id="escalationReasonDisplay" class="metric-sub">--</div>
-        </div>
-
-        <div class="metric-box">
-          <div class="metric-label">Generation Mode</div>
-          <div id="generationModeDisplay" class="metric-value">--</div>
-          <div id="humanReviewDisplay" class="metric-sub">Human Review: --</div>
-        </div>
-      </div>
-
-      <div class="reply-box">
-        <div class="reply-header">
-          <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Generated Response Draft</span>
-        </div>
-        <div id="replyDisplay" class="reply-text">--</div>
-      </div>
-
-      <div>
-        <div class="section-title">Retrieved Historical Resolutions (<span id="evidenceCount">0</span>)</div>
-        <div id="evidenceList"></div>
-      </div>
-
-      <details>
-        <summary>View Complete JSON Response</summary>
-        <pre id="rawJsonDisplay"></pre>
-      </details>
+      <div id="actionBadge" class="action-pill"></div>
     </div>
+
+    <!-- Metrics Row -->
+    <div class="metric-cards-grid">
+      <div class="stat-card">
+        <div>
+          <div class="stat-label">
+            <span>Predicted Intent</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div id="intentDisplay" class="stat-value">--</div>
+        </div>
+        <div>
+          <div class="confidence-meter">
+            <div id="confidenceBar" class="confidence-fill" style="width: 0%;"></div>
+          </div>
+          <div id="confidenceDisplay" class="stat-footer">Confidence: --</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div>
+          <div class="stat-label">
+            <span>Escalation Policy</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div id="escalationTierDisplay" class="stat-value">--</div>
+        </div>
+        <div id="escalationReasonDisplay" class="stat-footer">--</div>
+      </div>
+
+      <div class="stat-card">
+        <div>
+          <div class="stat-label">
+            <span>Generation Mode</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div id="generationModeDisplay" class="stat-value">--</div>
+        </div>
+        <div id="humanReviewDisplay" class="stat-footer">Human Review: --</div>
+      </div>
+    </div>
+
+    <!-- Response Draft -->
+    <div class="draft-box">
+      <div class="draft-header">
+        <div class="draft-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Generated Response Draft
+        </div>
+        <button type="button" class="copy-btn" onclick="copyReplyDraft()">
+          <svg id="copyIcon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span id="copyBtnText">Copy Draft</span>
+        </button>
+      </div>
+      <div id="replyDisplay" class="draft-body">--</div>
+    </div>
+
+    <!-- Historical Precedents -->
+    <div class="evidence-section">
+      <div class="evidence-title">
+        <span>Retrieved Historical Precedents (<span id="evidenceCount">0</span>)</span>
+        <span class="label-hint">TF-IDF Cosine Retrieval</span>
+      </div>
+      <div id="evidenceList"></div>
+    </div>
+
+    <!-- Raw JSON Collapsible -->
+    <details>
+      <summary>
+        <span>Inspection · Raw JSON Payload</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <pre id="rawJsonDisplay"></pre>
+    </details>
   </div>
 
   <footer>
-    <p>Uber AI Support Agent · Trained strictly on leak-free customer interaction pairs (@Uber_Support) · <a href="https://github.com/Rajnish5821Kumar/hiver-sde-intern-assignment" target="_blank">GitHub Repository</a></p>
+    <p>Uber AI Support Agent · Trained strictly on leak-free customer interaction pairs (@Uber_Support) · <a href="https://github.com/Rajnish5821Kumar/hiver-sde-intern-assignment" target="_blank" rel="noopener">GitHub Repository</a></p>
   </footer>
 </div>
 
@@ -422,26 +925,63 @@ const PRESETS = {
   }
 };
 
+const messageInput = document.getElementById('messageInput');
+const charCount = document.getElementById('charCount');
+
+function updateCharCount() {
+  const len = messageInput.value.length;
+  charCount.textContent = `${len.toLocaleString()} / 10,000`;
+}
+
+messageInput.addEventListener('input', updateCharCount);
+updateCharCount();
+
 function setPreset(key) {
   const preset = PRESETS[key];
   if (preset) {
-    document.getElementById('messageInput').value = preset.msg;
+    messageInput.value = preset.msg;
     document.getElementById('contextInput').value = preset.ctx;
+    updateCharCount();
+  }
+}
+
+function clearForm() {
+  messageInput.value = '';
+  document.getElementById('contextInput').value = '';
+  document.getElementById('resultsCard').hidden = true;
+  document.getElementById('statusIndicator').textContent = '';
+  updateCharCount();
+  messageInput.focus();
+}
+
+async function copyReplyDraft() {
+  const replyText = document.getElementById('replyDisplay').textContent;
+  const copyBtnText = document.getElementById('copyBtnText');
+  try {
+    await navigator.clipboard.writeText(replyText);
+    copyBtnText.textContent = 'Copied!';
+    setTimeout(() => {
+      copyBtnText.textContent = 'Copy Draft';
+    }, 2000);
+  } catch (err) {
+    console.error('Failed to copy: ', err);
   }
 }
 
 document.getElementById('agentForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const submitBtn = document.getElementById('submitBtn');
+  const btnText = document.getElementById('btnText');
   const statusIndicator = document.getElementById('statusIndicator');
   const resultsCard = document.getElementById('resultsCard');
   
-  const message = document.getElementById('messageInput').value.trim();
+  const message = messageInput.value.trim();
   const context = document.getElementById('contextInput').value.trim();
   const system = document.getElementById('systemTier').value;
 
   submitBtn.disabled = true;
-  statusIndicator.textContent = 'Processing through AI classification & escalation pipeline...';
+  btnText.innerHTML = '<span class="spinner"></span> Processing...';
+  statusIndicator.innerHTML = '<span style="color: var(--brand-black); font-weight: 500;">Executing inference pipeline...</span>';
 
   try {
     const res = await fetch('/api/predict', {
@@ -455,24 +995,23 @@ document.getElementById('agentForm').addEventListener('submit', async (e) => {
       throw new Error(data.error || 'Server returned an error');
     }
 
-    // Populate Results
-    document.getElementById('resultTimestamp').textContent = 'Processed at ' + new Date().toLocaleTimeString();
-    
     // Action Badge
     const actionBadge = document.getElementById('actionBadge');
+    const isEscalate = data.action === 'ESCALATE';
     actionBadge.textContent = data.action;
-    actionBadge.className = 'action-tag ' + (data.action === 'ESCALATE' ? 'tag-escalate' : 'tag-auto');
+    actionBadge.className = 'action-pill ' + (isEscalate ? 'pill-escalate' : 'pill-auto');
 
     // Metrics
-    document.getElementById('intentDisplay').textContent = data.intent || 'Unknown';
+    document.getElementById('intentDisplay').textContent = (data.intent || 'Unknown').replace(/_/g, ' ');
     const confPct = Math.round((data.intent_confidence || 0) * 100);
-    document.getElementById('confidenceDisplay').textContent = `Confidence: ${confPct}% (${data.intent_confidence})`;
+    document.getElementById('confidenceDisplay').textContent = `Confidence: ${confPct}% (${Number(data.intent_confidence || 0).toFixed(3)})`;
+    document.getElementById('confidenceBar').style.width = `${Math.min(confPct, 100)}%`;
     
-    document.getElementById('escalationTierDisplay').textContent = data.escalation_tier || (data.action === 'ESCALATE' ? 'POLICY_ESCALATE' : 'NONE');
-    document.getElementById('escalationReasonDisplay').textContent = data.escalation_reason || 'N/A';
+    document.getElementById('escalationTierDisplay').textContent = data.escalation_tier || (isEscalate ? 'POLICY_ESCALATE' : 'NONE');
+    document.getElementById('escalationReasonDisplay').textContent = data.escalation_reason ? `Reason: ${data.escalation_reason}` : 'No escalation triggers encountered';
 
-    document.getElementById('generationModeDisplay').textContent = data.generation_mode || 'standard';
-    document.getElementById('humanReviewDisplay').textContent = data.requires_human_review ? 'Required (Escalated)' : 'Not Required';
+    document.getElementById('generationModeDisplay').textContent = (data.generation_mode || 'standard').toUpperCase();
+    document.getElementById('humanReviewDisplay').textContent = data.requires_human_review ? '⚠️ Human Review Required' : '✅ Direct Auto-Dispatch';
 
     // Reply
     document.getElementById('replyDisplay').textContent = data.reply || 'No draft generated.';
@@ -484,19 +1023,22 @@ document.getElementById('agentForm').addEventListener('submit', async (e) => {
     document.getElementById('evidenceCount').textContent = examples.length;
 
     if (examples.length === 0) {
-      evidenceList.innerHTML = '<div style="color: var(--text-muted); font-size: 13px;">No historical precedents matched retrieval similarity threshold.</div>';
+      evidenceList.innerHTML = '<div style="color: var(--text-muted); font-size: 13px; padding: 12px; background: var(--surface-muted); border-radius: 8px;">No historical precedents matched retrieval similarity threshold.</div>';
     } else {
       examples.forEach((ex, idx) => {
         const item = document.createElement('div');
-        item.className = 'evidence-item';
+        item.className = 'evidence-card';
         const simScore = ex.similarity ? Math.round(ex.similarity * 100) : '--';
         item.innerHTML = `
-          <div class="evidence-header">
-            <span>Precedent #${idx + 1} (${ex.intent || 'General'})</span>
-            <span>Similarity: ${simScore}%</span>
+          <div class="evidence-top">
+            <span class="evidence-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              Historical Turn #${idx + 1} (${(ex.intent || 'General').replace(/_/g, ' ')})
+            </span>
+            <span class="evidence-sim">Sim: ${simScore}%</span>
           </div>
-          <div style="color: #8b949e; margin-bottom: 4px;"><strong>Customer:</strong> ${ex.customer_message || ''}</div>
-          <div style="color: #3fb950;"><strong>Historical Support Reply:</strong> ${ex.brand_reply || ''}</div>
+          <div class="evidence-query"><strong>Customer:</strong> ${escapeHtml(ex.customer_message || '')}</div>
+          <div class="evidence-reply"><strong>Historical Reply:</strong> ${escapeHtml(ex.brand_reply || '')}</div>
         `;
         evidenceList.appendChild(item);
       });
@@ -506,13 +1048,25 @@ document.getElementById('agentForm').addEventListener('submit', async (e) => {
     document.getElementById('rawJsonDisplay').textContent = JSON.stringify(data, null, 2);
 
     resultsCard.hidden = false;
-    statusIndicator.textContent = 'Completed in real time.';
+    statusIndicator.innerHTML = '<span style="color: var(--success-text); font-weight: 500;">✓ Pipeline finished successfully</span>';
+    
+    // Smooth scroll to results on mobile
+    if (window.innerWidth < 768) {
+      resultsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   } catch (err) {
-    statusIndicator.textContent = 'Error: ' + err.message;
+    statusIndicator.innerHTML = `<span style="color: var(--danger-text); font-weight: 500;">Error: ${escapeHtml(err.message)}</span>`;
   } finally {
     submitBtn.disabled = false;
+    btnText.textContent = 'Process Customer Message';
   }
 });
+
+function escapeHtml(str) {
+  return str.replace(/[&<>'"]/g, 
+    tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+  );
+}
 </script>
 </body>
 </html>
