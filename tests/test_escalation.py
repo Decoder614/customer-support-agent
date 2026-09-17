@@ -1,4 +1,4 @@
-"""Tests for deterministic safety gatekeeper and escalation keyword interception."""
+"""Tests for deterministic safety gatekeeper and multi-tier escalation policy engine."""
 
 import pytest
 
@@ -8,7 +8,16 @@ from src.escalation.safety_rules import (
     check_safety_risk,
     evaluate_safety_gate,
 )
+from src.escalation.policy_engine import (
+    PolicyDecision,
+    decide,
+)
+from src.intents.taxonomy import Intent
 
+
+# ====================================================================
+# Tier 1: Safety Gatekeeper Tests
+# ====================================================================
 
 @pytest.mark.parametrize(
     "utterance,expected_category",
@@ -79,3 +88,113 @@ def test_safety_gate_edge_cases():
 
     assert check_safety_risk("") is None
     assert check_safety_risk(None) is None  # type: ignore
+
+
+# ====================================================================
+# Multi-Tier Policy Engine Decision Matrix Tests
+# ====================================================================
+
+def test_policy_decide_safety_emergency_overrides():
+    """Verify safety emergency overrides high confidence and valid retrieval."""
+    valid_evidence = [{"similarity_score": 0.85, "brand_reply": "Here is how to contact driver"}]
+    decision = decide(
+        message="Driver crashed the car and was threatening me",
+        intent=Intent.LOST_AND_FOUND.value,
+        confidence=0.95,
+        evidence=valid_evidence,
+    )
+    assert decision.action == "ESCALATE"
+    assert decision.escalation_tier == "SAFETY_EMERGENCY"
+    assert decision.is_auto_handled is False
+
+
+@pytest.mark.parametrize(
+    "high_risk_intent",
+    [
+        Intent.SAFETY_AND_CONDUCT.value,
+        Intent.FARE_DISPUTE_OVERCHARGE.value,
+        Intent.CANCELLATION_FEE.value,
+        Intent.DRIVER_PARTNER_INQUIRY.value,
+    ],
+)
+def test_policy_decide_high_risk_intent_escalation(high_risk_intent):
+    """Verify high-risk domain intents always escalate regardless of high confidence and evidence."""
+    valid_evidence = [{"similarity_score": 0.90, "brand_reply": "Historical reply precedent"}]
+    decision = decide(
+        message="I have a dispute regarding my fare",
+        intent=high_risk_intent,
+        confidence=0.98,
+        evidence=valid_evidence,
+    )
+    assert decision.action == "ESCALATE"
+    assert decision.escalation_tier == "HIGH_RISK_INTENT"
+    assert decision.is_auto_handled is False
+
+
+def test_policy_decide_general_feedback_escalation():
+    """Verify general feedback or unclassified queries are escalated."""
+    valid_evidence = [{"similarity_score": 0.70, "brand_reply": "Thanks for reaching out."}]
+    decision = decide(
+        message="Just saying hi to Uber support",
+        intent=Intent.OTHER_GENERAL_FEEDBACK.value,
+        confidence=0.90,
+        evidence=valid_evidence,
+    )
+    assert decision.action == "ESCALATE"
+    assert decision.escalation_tier == "GENERAL_FEEDBACK"
+    assert decision.is_auto_handled is False
+
+
+def test_policy_decide_confidence_gating():
+    """Verify low classification confidence (< 0.65) triggers escalation."""
+    valid_evidence = [{"similarity_score": 0.75, "brand_reply": "Check in-app lost item flow"}]
+    decision = decide(
+        message="I might have left something in the car maybe",
+        intent=Intent.LOST_AND_FOUND.value,
+        confidence=0.55,  # Below 0.65 threshold
+        evidence=valid_evidence,
+    )
+    assert decision.action == "ESCALATE"
+    assert decision.escalation_tier == "CONFIDENCE_GATE"
+    assert "below safe automation threshold" in decision.reason
+
+
+def test_policy_decide_retrieval_evidence_gating():
+    """Verify missing or low similarity (< 0.30) evidence triggers escalation."""
+    # Empty evidence list
+    decision_no_ev = decide(
+        message="I left my phone in the car",
+        intent=Intent.LOST_AND_FOUND.value,
+        confidence=0.90,
+        evidence=[],
+    )
+    assert decision_no_ev.action == "ESCALATE"
+    assert decision_no_ev.escalation_tier == "RETRIEVAL_GATE"
+
+    # Low similarity score evidence
+    low_sim_evidence = [{"similarity_score": 0.22, "brand_reply": "General response"}]
+    decision_low_sim = decide(
+        message="I left my phone in the car",
+        intent=Intent.LOST_AND_FOUND.value,
+        confidence=0.90,
+        evidence=low_sim_evidence,
+    )
+    assert decision_low_sim.action == "ESCALATE"
+    assert decision_low_sim.escalation_tier == "RETRIEVAL_GATE"
+
+
+def test_policy_decide_auto_handle_success():
+    """Verify low-risk, high-confidence, well-grounded inquiry triggers AUTO_HANDLE."""
+    good_evidence = [
+        {"similarity_score": 0.82, "brand_reply": "Visit [URL] to connect with driver for lost item."}
+    ]
+    decision = decide(
+        message="I forgot my glasses and jacket in the vehicle",
+        intent=Intent.LOST_AND_FOUND.value,
+        confidence=0.92,
+        evidence=good_evidence,
+    )
+    assert decision.action == "AUTO_HANDLE"
+    assert decision.escalation_tier == "NONE"
+    assert decision.is_auto_handled is True
+    assert "low-risk self-service" in decision.reason
